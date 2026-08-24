@@ -11,7 +11,9 @@ import {
   BarChart3,
   FileEdit,
   Zap,
-  ArrowRight
+  ArrowRight,
+  Sparkles,
+  Eye
 } from "lucide-react";
 
 export const metadata = {
@@ -25,22 +27,32 @@ export default function AboutPage() {
     {
       title: "Collaboration",
       desc: "We believe win-win partnerships are built on transparency and teamwork.",
+      icon: Users,
+      color: "text-sky-600 bg-sky-50 border-sky-200",
     },
     {
       title: "Excellence",
       desc: "Every call, report, and campaign reflects our commitment to quality.",
+      icon: Award,
+      color: "text-amber-600 bg-amber-50 border-amber-200",
     },
     {
       title: "Integrity",
       desc: "We handle your data and brand reputation with the highest ethical standards.",
+      icon: Shield,
+      color: "text-emerald-600 bg-emerald-50 border-emerald-200",
     },
     {
       title: "Innovation",
       desc: "We continuously refine processes and leverage the latest tools to stay ahead.",
+      icon: Lightbulb,
+      color: "text-purple-600 bg-purple-50 border-purple-200",
     },
     {
       title: "Accountability",
       desc: "Clear KPIs and regular insights keep us focused on your success.",
+      icon: Target,
+      color: "text-rose-600 bg-rose-50 border-rose-200",
     },
   ];
 
@@ -61,26 +73,31 @@ export default function AboutPage() {
   ];
 
   const counters = [
-    { icon: AlarmClock, count: "130", label: "Happy Clients" },
-    { icon: BarChart3, count: "130", label: "Projects completed" },
-    { icon: FileEdit, count: "90", label: "Positive feedback" },
-    { icon: Zap, count: "250", label: "Cups of Coffee" },
+    { icon: AlarmClock, count: "130", label: "Happy Clients", color: "text-sky-400" },
+    { icon: BarChart3, count: "130", label: "Projects completed", color: "text-emerald-400" },
+    { icon: FileEdit, count: "90", label: "Positive feedback", color: "text-amber-400" },
+    { icon: Zap, count: "250", label: "Cups of Coffee", color: "text-purple-400" },
   ];
 
   return (
-    <div className="bg-white">
+    <div className="bg-white overflow-hidden">
       {/* 1. Header */}
       <PageHeader
         title="About Us"
         breadcrumb={[{ name: "About Us" }]}
       />
 
-      {/* 2. We Create technology Section */}
-      <section className="py-20 bg-white">
+      {/* 2. We Create technology Section with Floating Highlights */}
+      <section className="py-20 lg:py-28 bg-white relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             <div className="lg:col-span-6 space-y-6">
-              <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight">
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-sky-100 text-sky-700 text-xs font-semibold uppercase tracking-wider">
+                <Sparkles className="w-3.5 h-3.5 text-sky-600 animate-spin" style={{ animationDuration: "9s" }} />
+                <span>Our Story</span>
+              </div>
+
+              <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight leading-tight">
                 We Create technology
               </h2>
               <p className="text-slate-600 text-base text-justify leading-relaxed">
@@ -92,54 +109,73 @@ export default function AboutPage() {
             </div>
 
             <div className="lg:col-span-6">
-              <div className="relative rounded-2xl overflow-hidden shadow-lg border border-slate-100 bg-slate-50">
+              <div className="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-slate-50 group">
                 <Image
                   src="/images/company/company-image.jpg"
                   alt="Saya Intellicall Company"
                   width={700}
                   height={450}
-                  className="w-full h-auto object-cover"
+                  className="w-full h-[450px] object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                 />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                  <span className="text-white text-xs font-bold bg-sky-600/90 px-3 py-1 rounded-full backdrop-blur-xs">
+                    Technology & BPO Innovation
+                  </span>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 3. Company Mission & Vision */}
-      <section className="py-20 bg-slate-50 border-y border-slate-200/60">
+      {/* 3. Company Mission & Vision with Hover Card Depth */}
+      <section className="py-20 bg-slate-50 border-y border-slate-200/60 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
             {/* Mission */}
-            <div className="space-y-4">
-              <h3 className="text-2xl font-bold text-slate-900">Our Mission</h3>
-              <p className="text-slate-600 text-base text-justify leading-relaxed">
-                To empower event organizers and real estate professionals with seamless Telecalling solutions that drive engagement, nurture prospects, and accelerate revenue growth..
-              </p>
-              <div className="relative rounded-2xl overflow-hidden shadow-md bg-white border border-slate-200 mt-6">
+            <div className="bg-white rounded-3xl p-8 border border-slate-200/80 card-interactive shadow-sm space-y-6 flex flex-col justify-between group">
+              <div className="space-y-4">
+                <div className="w-14 h-14 rounded-2xl bg-sky-50 text-sky-600 border border-sky-200 flex items-center justify-center group-hover:scale-110 group-hover:bg-sky-600 group-hover:text-white transition-all duration-300">
+                  <Target className="w-7 h-7" />
+                </div>
+                <h3 className="text-2xl font-bold text-slate-900 group-hover:text-sky-600 transition-colors">
+                  Our Mission
+                </h3>
+                <p className="text-slate-600 text-base text-justify leading-relaxed">
+                  To empower event organizers and real estate professionals with seamless Telecalling solutions that drive engagement, nurture prospects, and accelerate revenue growth..
+                </p>
+              </div>
+              <div className="relative rounded-2xl overflow-hidden shadow-md bg-slate-100 border border-slate-200 mt-4">
                 <Image
                   src="/images/company/company-image-2.jpg"
                   alt="Our Mission"
                   width={600}
                   height={350}
-                  className="w-full h-64 object-cover"
+                  className="w-full h-60 object-cover group-hover:scale-105 transition-transform duration-500"
                 />
               </div>
             </div>
 
             {/* Vision */}
-            <div className="space-y-4">
-              <h3 className="text-2xl font-bold text-slate-900">Our Vision</h3>
-              <p className="text-slate-600 text-base text-justify leading-relaxed">
-                To be the most trusted Telecalling partner in our industries, renowned for delivering personalized outreach, impeccable data security, and unparalleled ROI..
-              </p>
-              <div className="relative rounded-2xl overflow-hidden shadow-md bg-white border border-slate-200 mt-6">
+            <div className="bg-white rounded-3xl p-8 border border-slate-200/80 card-interactive shadow-sm space-y-6 flex flex-col justify-between group">
+              <div className="space-y-4">
+                <div className="w-14 h-14 rounded-2xl bg-indigo-50 text-indigo-600 border border-indigo-200 flex items-center justify-center group-hover:scale-110 group-hover:bg-indigo-600 group-hover:text-white transition-all duration-300">
+                  <Eye className="w-7 h-7" />
+                </div>
+                <h3 className="text-2xl font-bold text-slate-900 group-hover:text-indigo-600 transition-colors">
+                  Our Vision
+                </h3>
+                <p className="text-slate-600 text-base text-justify leading-relaxed">
+                  To be the most trusted Telecalling partner in our industries, renowned for delivering personalized outreach, impeccable data security, and unparalleled ROI..
+                </p>
+              </div>
+              <div className="relative rounded-2xl overflow-hidden shadow-md bg-slate-100 border border-slate-200 mt-4">
                 <Image
                   src="/images/company/company-image-3.jpg"
                   alt="Our Vision"
                   width={600}
                   height={350}
-                  className="w-full h-64 object-cover"
+                  className="w-full h-60 object-cover group-hover:scale-105 transition-transform duration-500"
                 />
               </div>
             </div>
@@ -147,10 +183,11 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* 4. Get Started Today Call To Action Banner */}
-      <section className="py-16 bg-sky-600 text-white text-center">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4">
-          <h4 className="text-2xl sm:text-3xl font-bold">Get Started Today</h4>
+      {/* 4. Get Started Today Call To Action Banner with Pulse Highlight */}
+      <section className="py-16 bg-gradient-to-r from-sky-600 via-blue-600 to-sky-700 text-white text-center relative overflow-hidden">
+        <div className="absolute inset-0 bg-radial-at-c from-white/10 via-transparent to-transparent opacity-30 animate-pulse-subtle pointer-events-none" />
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4 relative z-10">
+          <h4 className="text-2xl sm:text-3xl font-extrabold tracking-tight">Get Started Today</h4>
           <p className="text-sky-100 text-sm sm:text-base leading-relaxed">
             Transform customer engagement & oprational efficiency with a partner who cares as much above your brand as you do.
           </p>
@@ -160,67 +197,85 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* 5. Core Values */}
-      <section className="py-20 bg-white">
+      {/* 5. Core Values with Interactive Staggered Hover Badges */}
+      <section className="py-20 lg:py-28 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-14">
             <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-4 tracking-tight">
               Core Values
             </h2>
-            <div className="space-y-2 text-slate-600 text-sm sm:text-base text-center max-w-2xl mx-auto">
+            <div className="space-y-3 text-slate-600 text-sm sm:text-base text-center max-w-2xl mx-auto">
               {coreValues.map((v, idx) => (
-                <p key={idx}>
-                  <strong>• {v.title}:</strong> {v.desc}
-                </p>
+                <div
+                  key={idx}
+                  className="p-3 rounded-xl bg-slate-50 hover:bg-sky-50/60 border border-slate-100 hover:border-sky-200 transition-all duration-300"
+                >
+                  <p>
+                    <strong className="text-slate-900">• {v.title}:</strong> {v.desc}
+                  </p>
+                </div>
               ))}
             </div>
-            <div className="w-16 h-1 bg-sky-500 mx-auto mt-6 rounded-full"></div>
+            <div className="w-16 h-1 bg-gradient-to-r from-sky-400 to-blue-600 mx-auto mt-6 rounded-full"></div>
           </div>
 
-          {/* Company Gallery */}
+          {/* Company Gallery with Zoom & Glow Sheen */}
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
             {galleryImages.map((src, idx) => (
               <div
                 key={idx}
-                className="relative h-44 rounded-xl overflow-hidden shadow-sm bg-slate-100 border border-slate-200 group"
+                className="relative h-48 rounded-2xl overflow-hidden shadow-sm bg-slate-100 border border-slate-200 group card-interactive"
               >
                 <Image
                   src={src}
                   alt={`Company Gallery ${idx + 1}`}
                   fill
-                  className="object-cover group-hover:scale-110 transition-transform duration-500"
+                  className="object-cover group-hover:scale-115 transition-transform duration-700 ease-out"
                 />
+                <div className="absolute inset-0 bg-sky-600/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* 6. Why Clients Choose Us + Counters */}
-      <section className="py-20 bg-slate-900 text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* 6. Why Clients Choose Us + Animated Counters */}
+      <section className="py-20 bg-slate-900 text-white relative overflow-hidden">
+        <div className="absolute inset-0 pointer-events-none opacity-10">
+          <div className="absolute -top-20 -left-20 w-96 h-96 bg-sky-500 rounded-full blur-3xl" />
+          <div className="absolute -bottom-20 -right-20 w-96 h-96 bg-blue-600 rounded-full blur-3xl" />
+        </div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
             <h2 className="text-3xl sm:text-4xl font-bold text-white tracking-tight">
               Why Clients Choose Us
             </h2>
             <div className="space-y-2 text-slate-300 text-sm sm:text-base text-center max-w-2xl mx-auto leading-relaxed">
               {whyChooseUs.map((point, idx) => (
-                <p key={idx}>• {point}</p>
+                <p key={idx} className="p-1">
+                  • {point}
+                </p>
               ))}
             </div>
           </div>
 
-          {/* 4 Counter Items */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center divide-y sm:divide-y-0 sm:divide-x divide-slate-800">
+          {/* 4 Counter Items with Floating Cards */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
             {counters.map((item, idx) => {
               const Icon = item.icon;
               return (
-                <div key={idx} className="p-4 space-y-2 flex flex-col items-center">
-                  <Icon className="w-8 h-8 text-sky-400 mb-2" />
-                  <div className="text-4xl sm:text-5xl font-extrabold text-white">
+                <div
+                  key={idx}
+                  className="p-6 rounded-2xl bg-slate-800/60 border border-slate-700/80 hover:border-sky-500/50 card-interactive shadow-lg flex flex-col items-center group"
+                >
+                  <div className="w-12 h-12 rounded-xl bg-slate-900 border border-slate-700 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+                    <Icon className={`w-6 h-6 ${item.color}`} />
+                  </div>
+                  <div className="text-4xl sm:text-5xl font-black text-white group-hover:text-sky-400 transition-colors">
                     {item.count}
                   </div>
-                  <h3 className="text-sm font-semibold text-slate-300 uppercase tracking-wider">
+                  <h3 className="text-xs font-bold text-slate-400 uppercase tracking-wider mt-2">
                     {item.label}
                   </h3>
                 </div>
@@ -230,22 +285,23 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* 7. Bottom Call To Action */}
-      <section className="py-20 bg-slate-950 text-white text-center border-t border-slate-800">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+      {/* 7. Bottom Call To Action with Shimmer Effect */}
+      <section className="py-20 bg-slate-950 text-white text-center border-t border-slate-800 relative">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6 relative z-10">
           <h2 className="text-3xl sm:text-4xl font-bold tracking-tight">
             Let's Create Something Together
           </h2>
-          <p className="text-slate-300 text-base sm:text-lg max-w-xl mx-auto">
+          <p className="text-slate-300 text-base sm:text-lg max-w-xl mx-auto leading-relaxed">
             “Our tailored solutions ensure compliance with industry regulations and align with your unique business workflows.
           </p>
           <div className="pt-2">
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 bg-sky-500 hover:bg-sky-600 text-white px-8 py-3.5 rounded-md font-semibold text-sm shadow-lg shadow-sky-500/30 transition-all uppercase tracking-wider"
+              className="relative inline-flex items-center gap-2 bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-600 hover:to-blue-700 text-white px-8 py-3.5 rounded-full font-bold text-sm shadow-xl shadow-sky-500/30 transition-all uppercase tracking-wider transform hover:-translate-y-0.5 overflow-hidden group"
             >
-              <span>Contact Us</span>
-              <ArrowRight className="w-4 h-4" />
+              <span className="absolute inset-0 w-full h-full animate-shimmer pointer-events-none" />
+              <span className="relative z-10">Contact Us</span>
+              <ArrowRight className="w-4 h-4 relative z-10 group-hover:translate-x-1 transition-transform" />
             </Link>
           </div>
         </div>

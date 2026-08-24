@@ -26,7 +26,7 @@
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(12px);
+    transform: translateY(14px);
   }
   to {
     opacity: 1;
@@ -70,6 +70,15 @@
   }
 }
 
+@keyframes floatSlowReverse {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(10px) rotate(2deg);
+  }
+}
+
 @keyframes pulseRing {
   0% {
     transform: scale(0.95);
@@ -93,6 +102,38 @@
   50% {
     opacity: 0.9;
     transform: scaleX(1.1);
+  }
+}
+
+@keyframes shimmerEffect {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes radarBeacon {
+  0% {
+    transform: scale(0.8);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(2.4);
+    opacity: 0;
+  }
+}
+
+@keyframes gradientMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
   }
 }
 
@@ -120,6 +161,10 @@
   animation: floatAnimation 4s ease-in-out infinite;
 }
 
+.animate-float-reverse {
+  animation: floatSlowReverse 5s ease-in-out infinite;
+}
+
 .animate-pulse-ring {
   animation: pulseRing 3.5s ease-in-out infinite;
 }
@@ -128,11 +173,40 @@
   animation: signalBeam 2s ease-in-out infinite;
 }
 
+.animate-shimmer {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.25) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmerEffect 3s infinite;
+}
+
+.animate-beacon {
+  animation: radarBeacon 2s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+}
+
+.animate-gradient-flow {
+  background-size: 200% 200%;
+  animation: gradientMove 6s ease infinite;
+}
+
 /* Pause animation on hover */
 .pause-on-hover:hover .animate-orbit,
 .pause-on-hover:hover .animate-counter-orbit,
 .pause-on-hover:hover .animate-orbit-reverse {
   animation-play-state: paused;
+}
+
+/* Micro-interaction Card Hover Lift & Glow */
+.card-interactive {
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.card-interactive:hover {
+  transform: translateY(-6px) scale(1.01);
+  box-shadow: 0 20px 30px -10px rgba(2, 132, 199, 0.15), 0 10px 15px -5px rgba(0, 0, 0, 0.04);
 }
 
 /* Glassmorphism */

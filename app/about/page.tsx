@@ -183,15 +183,25 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* 4. Get Started Today Call To Action Banner with Pulse Highlight */}
-      <section className="py-16 bg-gradient-to-r from-sky-600 via-blue-600 to-sky-700 text-white text-center relative overflow-hidden">
-        <div className="absolute inset-0 bg-radial-at-c from-white/10 via-transparent to-transparent opacity-30 animate-pulse-subtle pointer-events-none" />
+      {/* 4. Get Started Today Call To Action Banner with Dark Charcoal & Cyan Highlights */}
+      <section className="py-16 bg-[#111827] text-white text-center relative overflow-hidden border-y border-slate-800">
+        {/* Ambient Cyan Glow */}
+        <div className="absolute inset-0 bg-radial-at-c from-cyan-500/10 via-transparent to-transparent pointer-events-none" />
+        <div className="absolute -top-24 left-1/2 -translate-x-1/2 w-96 h-48 bg-cyan-400/10 rounded-full blur-3xl pointer-events-none" />
+
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4 relative z-10">
-          <h4 className="text-2xl sm:text-3xl font-extrabold tracking-tight">Get Started Today</h4>
-          <p className="text-sky-100 text-sm sm:text-base leading-relaxed">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 text-xs font-semibold uppercase tracking-wider mb-1">
+            <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
+            <span>Transform Customer Engagement</span>
+          </div>
+
+          <h4 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-white">
+            Get Started Today
+          </h4>
+          <p className="text-slate-300 text-sm sm:text-base leading-relaxed max-w-2xl mx-auto">
             Transform customer engagement & oprational efficiency with a partner who cares as much above your brand as you do.
           </p>
-          <p className="text-sky-100 text-sm sm:text-base leading-relaxed font-medium">
+          <p className="text-cyan-300 text-sm sm:text-base leading-relaxed font-medium max-w-2xl mx-auto">
             Contact us now for a free consultation and discover how our Call Center and BPO services in india can accelerate your business growth.
           </p>
         </div>

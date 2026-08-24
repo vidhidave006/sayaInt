@@ -43,7 +43,7 @@
   }
 }
 
-@keyframes orbitClockwise {
+@keyframes orbitAnimation {
   from {
     transform: rotate(0deg);
   }
@@ -52,7 +52,7 @@
   }
 }
 
-@keyframes orbitCounterClockwise {
+@keyframes counterOrbitAnimation {
   from {
     transform: rotate(0deg);
   }
@@ -61,60 +61,39 @@
   }
 }
 
-@keyframes laserPulse {
+@keyframes floatAnimation {
   0%, 100% {
-    opacity: 0.4;
-    filter: drop-shadow(0 0 4px #10b981);
+    transform: translateY(0px);
   }
   50% {
-    opacity: 1;
-    filter: drop-shadow(0 0 12px #38bdf8);
+    transform: translateY(-8px);
   }
 }
 
-@keyframes soundWave {
-  0%, 100% {
-    height: 8px;
+@keyframes pulseRing {
+  0% {
+    transform: scale(0.95);
+    opacity: 0.8;
   }
   50% {
-    height: 32px;
+    transform: scale(1.08);
+    opacity: 0.3;
+  }
+  100% {
+    transform: scale(0.95);
+    opacity: 0.8;
   }
 }
 
-.animate-orbit-slow {
-  animation: orbitClockwise 40s linear infinite;
-}
-
-.animate-orbit-medium {
-  animation: orbitClockwise 28s linear infinite;
-}
-
-.animate-orbit-fast {
-  animation: orbitClockwise 18s linear infinite;
-}
-
-.animate-orbit-reverse {
-  animation: orbitCounterClockwise 35s linear infinite;
-}
-
-.animate-counter-spin-slow {
-  animation: orbitCounterClockwise 40s linear infinite;
-}
-
-.animate-counter-spin-medium {
-  animation: orbitCounterClockwise 28s linear infinite;
-}
-
-.animate-counter-spin-fast {
-  animation: orbitCounterClockwise 18s linear infinite;
-}
-
-.animate-counter-spin-reverse {
-  animation: orbitClockwise 35s linear infinite;
-}
-
-.animate-laser {
-  animation: laserPulse 3s infinite ease-in-out;
+@keyframes signalBeam {
+  0%, 100% {
+    opacity: 0.2;
+    transform: scaleX(0.9);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scaleX(1.1);
+  }
 }
 
 .animate-fade-in {
@@ -123,6 +102,37 @@
 
 .animate-pulse-subtle {
   animation: pulseSubtle 2.5s infinite ease-in-out;
+}
+
+.animate-orbit {
+  animation: orbitAnimation 40s linear infinite;
+}
+
+.animate-counter-orbit {
+  animation: counterOrbitAnimation 40s linear infinite;
+}
+
+.animate-orbit-reverse {
+  animation: counterOrbitAnimation 50s linear infinite;
+}
+
+.animate-float {
+  animation: floatAnimation 4s ease-in-out infinite;
+}
+
+.animate-pulse-ring {
+  animation: pulseRing 3.5s ease-in-out infinite;
+}
+
+.animate-signal-beam {
+  animation: signalBeam 2s ease-in-out infinite;
+}
+
+/* Pause animation on hover */
+.pause-on-hover:hover .animate-orbit,
+.pause-on-hover:hover .animate-counter-orbit,
+.pause-on-hover:hover .animate-orbit-reverse {
+  animation-play-state: paused;
 }
 
 /* Glassmorphism */

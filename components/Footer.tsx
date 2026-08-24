@@ -1,57 +1,64 @@
 import Link from "next/link";
-import Image from "next/image";
 import { FacebookIcon, InstagramIcon, LinkedinIcon } from "@/components/SocialIcons";
-import { MessageSquare } from "lucide-react";
+import { MessageSquare, Phone, MapPin, Mail, ArrowRight } from "lucide-react";
 
 export default function Footer() {
   return (
-    <footer id="footer" className="bg-slate-950 text-slate-300 py-16 border-t border-slate-900">
+    <footer id="footer" className="bg-[#f8fafc] text-slate-700 py-16 border-t border-slate-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 pb-12 border-b border-slate-800">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 pb-12 border-b border-slate-200">
           {/* About (4 cols) */}
           <div className="lg:col-span-4 space-y-4">
-            <h3 className="text-white font-bold text-lg uppercase tracking-wider">
+            <h3 className="text-slate-900 font-bold text-base uppercase tracking-wider flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-sky-500" />
               about
             </h3>
-            <p className="text-sm text-slate-400 text-justify leading-relaxed">
+            <p className="text-sm text-slate-600 text-justify leading-relaxed">
               we specialize in telecalling, inbound and outbound services, sales and marketing, and back office operations. Our tailored solutions are designed to enhance customer engagement and drive business growth.
             </p>
           </div>
 
           {/* Our Services (3 cols) */}
           <div className="lg:col-span-3 space-y-4">
-            <h3 className="text-white font-bold text-lg uppercase tracking-wider">
+            <h3 className="text-slate-900 font-bold text-base uppercase tracking-wider flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-sky-500" />
               Our Services
             </h3>
-            <ul className="space-y-2 text-sm text-slate-400">
+            <ul className="space-y-2.5 text-sm text-slate-600">
               <li>
-                <Link href="/service" className="hover:text-sky-400 transition-colors">
-                  Inbound Services
+                <Link href="/service" className="hover:text-sky-600 transition-colors flex items-center gap-1.5 group">
+                  <span className="w-1.5 h-1.5 rounded-full bg-slate-300 group-hover:bg-sky-500 transition-colors" />
+                  <span>Inbound Services</span>
                 </Link>
               </li>
               <li>
-                <Link href="/service" className="hover:text-sky-400 transition-colors">
-                  Outbound Services
+                <Link href="/service" className="hover:text-sky-600 transition-colors flex items-center gap-1.5 group">
+                  <span className="w-1.5 h-1.5 rounded-full bg-slate-300 group-hover:bg-sky-500 transition-colors" />
+                  <span>Outbound Services</span>
                 </Link>
               </li>
               <li>
-                <Link href="/service" className="hover:text-sky-400 transition-colors">
-                  SMS Marketing
+                <Link href="/service" className="hover:text-sky-600 transition-colors flex items-center gap-1.5 group">
+                  <span className="w-1.5 h-1.5 rounded-full bg-slate-300 group-hover:bg-sky-500 transition-colors" />
+                  <span>SMS Marketing</span>
                 </Link>
               </li>
               <li>
-                <Link href="/service" className="hover:text-sky-400 transition-colors">
-                  Whats App Marketing
+                <Link href="/service" className="hover:text-sky-600 transition-colors flex items-center gap-1.5 group">
+                  <span className="w-1.5 h-1.5 rounded-full bg-slate-300 group-hover:bg-sky-500 transition-colors" />
+                  <span>Whats App Marketing</span>
                 </Link>
               </li>
               <li>
-                <Link href="/service" className="hover:text-sky-400 transition-colors">
-                  Multi Level IVR
+                <Link href="/service" className="hover:text-sky-600 transition-colors flex items-center gap-1.5 group">
+                  <span className="w-1.5 h-1.5 rounded-full bg-slate-300 group-hover:bg-sky-500 transition-colors" />
+                  <span>Multi Level IVR</span>
                 </Link>
               </li>
               <li>
-                <Link href="/service" className="hover:text-sky-400 transition-colors">
-                  Consultancy
+                <Link href="/service" className="hover:text-sky-600 transition-colors flex items-center gap-1.5 group">
+                  <span className="w-1.5 h-1.5 rounded-full bg-slate-300 group-hover:bg-sky-500 transition-colors" />
+                  <span>Consultancy</span>
                 </Link>
               </li>
             </ul>
@@ -59,28 +66,33 @@ export default function Footer() {
 
           {/* Quick Links (2 cols) */}
           <div className="lg:col-span-2 space-y-4">
-            <h3 className="text-white font-bold text-lg uppercase tracking-wider">
+            <h3 className="text-slate-900 font-bold text-base uppercase tracking-wider flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-sky-500" />
               Quick Links
             </h3>
-            <ul className="space-y-2 text-sm text-slate-400">
+            <ul className="space-y-2.5 text-sm text-slate-600">
               <li>
-                <Link href="/about" className="hover:text-sky-400 transition-colors">
-                  About
+                <Link href="/about" className="hover:text-sky-600 transition-colors flex items-center gap-1.5 group">
+                  <span className="w-1.5 h-1.5 rounded-full bg-slate-300 group-hover:bg-sky-500 transition-colors" />
+                  <span>About</span>
                 </Link>
               </li>
               <li>
-                <Link href="/service" className="hover:text-sky-400 transition-colors">
-                  Services
+                <Link href="/service" className="hover:text-sky-600 transition-colors flex items-center gap-1.5 group">
+                  <span className="w-1.5 h-1.5 rounded-full bg-slate-300 group-hover:bg-sky-500 transition-colors" />
+                  <span>Services</span>
                 </Link>
               </li>
               <li>
-                <Link href="/team" className="hover:text-sky-400 transition-colors">
-                  Team
+                <Link href="/team" className="hover:text-sky-600 transition-colors flex items-center gap-1.5 group">
+                  <span className="w-1.5 h-1.5 rounded-full bg-slate-300 group-hover:bg-sky-500 transition-colors" />
+                  <span>Team</span>
                 </Link>
               </li>
               <li>
-                <Link href="/contact" className="hover:text-sky-400 transition-colors">
-                  Contact
+                <Link href="/contact" className="hover:text-sky-600 transition-colors flex items-center gap-1.5 group">
+                  <span className="w-1.5 h-1.5 rounded-full bg-slate-300 group-hover:bg-sky-500 transition-colors" />
+                  <span>Contact</span>
                 </Link>
               </li>
             </ul>
@@ -88,19 +100,22 @@ export default function Footer() {
 
           {/* Socially (3 cols) */}
           <div className="lg:col-span-3 space-y-4">
-            <h3 className="text-white font-bold text-lg uppercase tracking-wider">
+            <h3 className="text-slate-900 font-bold text-base uppercase tracking-wider flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-sky-500" />
               Socially
             </h3>
-            <ul className="space-y-2 text-sm text-slate-400">
+            <ul className="space-y-3 text-sm text-slate-600">
               <li>
                 <a
                   href="https://in.linkedin.com/in/abdullahsaya"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-sky-400 transition-colors flex items-center gap-2"
+                  className="hover:text-sky-600 transition-colors flex items-center gap-2.5 group"
                 >
-                  <LinkedinIcon className="w-4 h-4 text-sky-400" />
-                  <span>Linkedin</span>
+                  <span className="w-8 h-8 rounded-lg bg-white border border-slate-200 shadow-xs flex items-center justify-center text-sky-600 group-hover:border-sky-400 group-hover:bg-sky-50 transition-all">
+                    <LinkedinIcon className="w-4 h-4" />
+                  </span>
+                  <span className="font-medium">Linkedin</span>
                 </a>
               </li>
               <li>
@@ -108,10 +123,12 @@ export default function Footer() {
                   href="https://www.facebook.com/SayaIntellicall/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-sky-400 transition-colors flex items-center gap-2"
+                  className="hover:text-blue-600 transition-colors flex items-center gap-2.5 group"
                 >
-                  <FacebookIcon className="w-4 h-4 text-blue-400" />
-                  <span>Facebook</span>
+                  <span className="w-8 h-8 rounded-lg bg-white border border-slate-200 shadow-xs flex items-center justify-center text-blue-600 group-hover:border-blue-400 group-hover:bg-blue-50 transition-all">
+                    <FacebookIcon className="w-4 h-4" />
+                  </span>
+                  <span className="font-medium">Facebook</span>
                 </a>
               </li>
               <li>
@@ -119,10 +136,12 @@ export default function Footer() {
                   href="https://www.instagram.com/abdullah.f.saya/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-sky-400 transition-colors flex items-center gap-2"
+                  className="hover:text-pink-600 transition-colors flex items-center gap-2.5 group"
                 >
-                  <InstagramIcon className="w-4 h-4 text-pink-400" />
-                  <span>Instagram</span>
+                  <span className="w-8 h-8 rounded-lg bg-white border border-slate-200 shadow-xs flex items-center justify-center text-pink-600 group-hover:border-pink-400 group-hover:bg-pink-50 transition-all">
+                    <InstagramIcon className="w-4 h-4" />
+                  </span>
+                  <span className="font-medium">Instagram</span>
                 </a>
               </li>
               <li>
@@ -130,10 +149,12 @@ export default function Footer() {
                   href="https://wa.me/919890044786?text=Hello%20Saya%20Intellicall"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-sky-400 transition-colors flex items-center gap-2"
+                  className="hover:text-emerald-600 transition-colors flex items-center gap-2.5 group"
                 >
-                  <MessageSquare className="w-4 h-4 text-emerald-400" />
-                  <span>Whats App</span>
+                  <span className="w-8 h-8 rounded-lg bg-white border border-slate-200 shadow-xs flex items-center justify-center text-emerald-600 group-hover:border-emerald-400 group-hover:bg-emerald-50 transition-all">
+                    <MessageSquare className="w-4 h-4" />
+                  </span>
+                  <span className="font-medium">Whats App</span>
                 </a>
               </li>
               <li>
@@ -141,10 +162,12 @@ export default function Footer() {
                   href="https://www.justdial.com/Aurangabad-Maharashtra/Saya-Intellicall-Above-Reliance-Life-Insurance-Office-Nirala-Bazar-New-Samarth-Nagar-Nirala-Bazar/9999PX240-X240-130806122203-Y2J6_BZDET"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-sky-400 transition-colors flex items-center gap-2"
+                  className="hover:text-amber-600 transition-colors flex items-center gap-2.5 group"
                 >
-                  <span className="font-bold text-amber-400 text-xs">JD</span>
-                  <span>Just Dial</span>
+                  <span className="w-8 h-8 rounded-lg bg-white border border-slate-200 shadow-xs flex items-center justify-center text-amber-600 font-bold text-xs group-hover:border-amber-400 group-hover:bg-amber-50 transition-all">
+                    JD
+                  </span>
+                  <span className="font-medium">Just Dial</span>
                 </a>
               </li>
             </ul>
@@ -152,7 +175,7 @@ export default function Footer() {
         </div>
 
         {/* Footer Bottom */}
-        <div className="pt-8 text-center text-xs text-slate-500">
+        <div className="pt-8 text-center text-xs text-slate-500 font-medium">
           <h5>All rights reserved 2025@Saya Intellicall</h5>
         </div>
       </div>

@@ -197,11 +197,19 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 3. We Are Saya Section with Floating 10+ Years Experience Badge */}
-      <section className="py-20 lg:py-28 bg-slate-50 border-t border-slate-200/60 relative" id="about">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* 3. We Are Saya Section with Light Radiant Colors & Floating 10+ Years Experience Badge */}
+      <section className="py-20 lg:py-28 bg-gradient-to-b from-sky-50/60 via-white to-slate-50 border-t border-slate-200/80 relative overflow-hidden" id="about">
+        {/* Soft Ambient Light Glows */}
+        <div className="absolute top-1/2 -left-32 w-80 h-80 bg-sky-300/20 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute bottom-0 right-0 w-96 h-96 bg-blue-300/15 rounded-full blur-3xl pointer-events-none" />
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           {/* Section Title */}
           <div className="text-center max-w-2xl mx-auto mb-16">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-sky-100/80 text-sky-700 text-xs font-semibold uppercase tracking-wider mb-3 border border-sky-200/60">
+              <Headphones className="w-3.5 h-3.5 text-sky-600" />
+              <span>Who We Are</span>
+            </div>
             <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-3 tracking-tight">
               We Are Saya
             </h2>
@@ -213,25 +221,25 @@ export default function Home() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             {/* Left Image with Floating Experience Badge */}
-            <div className="relative rounded-3xl overflow-hidden shadow-xl bg-white p-3 border border-slate-200 group">
+            <div className="relative rounded-3xl overflow-hidden shadow-xl bg-white p-3.5 border border-slate-200/80 group">
               <Image
-                src="/images/about/we-are-saya.jpg"
-                alt="Saya Intellicall Telecalling Team"
+                src="/images/about/about-2.png"
+                alt="We Are Saya"
                 width={600}
                 height={400}
                 className="w-full h-auto object-cover rounded-2xl group-hover:scale-102 transition-transform duration-500"
               />
 
-              {/* Floating Animated Experience Pill */}
-              <div className="absolute -bottom-2 right-4 sm:bottom-6 sm:right-6 bg-slate-900 text-white p-4 rounded-2xl shadow-2xl border border-sky-500/40 flex items-center gap-3 animate-float">
-                <div className="w-10 h-10 rounded-xl bg-sky-500/20 text-sky-400 flex items-center justify-center">
+              {/* Floating Animated Experience Pill (Light Premium Glassmorphism) */}
+              <div className="absolute -bottom-2 right-4 sm:bottom-6 sm:right-6 bg-white/95 backdrop-blur-md text-slate-900 p-4 rounded-2xl shadow-2xl border border-slate-200/90 flex items-center gap-3 animate-float">
+                <div className="w-10 h-10 rounded-xl bg-sky-100 text-sky-600 flex items-center justify-center shadow-xs">
                   <Headphones className="w-5 h-5 animate-pulse" />
                 </div>
                 <div>
-                  <p className="text-[10px] font-bold uppercase tracking-wider text-sky-400">
+                  <p className="text-[10px] font-bold uppercase tracking-wider text-sky-600">
                     Trusted Leadership
                   </p>
-                  <p className="text-sm font-extrabold text-white">10+ Years in Telecalling</p>
+                  <p className="text-sm font-extrabold text-slate-900">10+ Years in Telecalling</p>
                 </div>
               </div>
             </div>
@@ -242,9 +250,9 @@ export default function Home() {
                 {checklist.map((item, idx) => (
                   <li
                     key={idx}
-                    className="flex items-start gap-3 p-3 rounded-2xl bg-white/80 border border-slate-200/80 shadow-xs hover:border-sky-400 hover:shadow-md hover:bg-white transition-all duration-300 group cursor-default"
+                    className="flex items-start gap-3.5 p-4 rounded-2xl bg-white border border-slate-200/80 shadow-xs hover:border-sky-400 hover:shadow-md hover:bg-sky-50/40 transition-all duration-300 group cursor-default"
                   >
-                    <div className="w-6 h-6 rounded-full bg-sky-100 text-sky-600 flex items-center justify-center shrink-0 mt-0.5 group-hover:bg-sky-600 group-hover:text-white transition-colors">
+                    <div className="w-6 h-6 rounded-full bg-sky-100 text-sky-600 flex items-center justify-center shrink-0 mt-0.5 group-hover:bg-sky-600 group-hover:text-white transition-colors shadow-xs">
                       <CheckCircle2 className="w-4 h-4" />
                     </div>
                     <span className="text-slate-700 text-sm sm:text-base leading-relaxed group-hover:text-slate-900 transition-colors">

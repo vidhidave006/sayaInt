@@ -249,43 +249,47 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* 6. Why Clients Choose Us + Animated Counters */}
-      <section className="py-20 bg-slate-900 text-white relative overflow-hidden">
-        <div className="absolute inset-0 pointer-events-none opacity-10">
-          <div className="absolute -top-20 -left-20 w-96 h-96 bg-sky-500 rounded-full blur-3xl" />
-          <div className="absolute -bottom-20 -right-20 w-96 h-96 bg-blue-600 rounded-full blur-3xl" />
-        </div>
+      {/* 6. Why Clients Choose Us + Animated Counters (Clean Light Theme) */}
+      <section className="py-20 bg-slate-50 border-t border-slate-200/80 relative overflow-hidden">
+        {/* Soft Light Ambiance */}
+        <div className="absolute top-1/2 -left-32 w-80 h-80 bg-sky-300/15 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute bottom-0 right-0 w-96 h-96 bg-blue-300/10 rounded-full blur-3xl pointer-events-none" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-            <h2 className="text-3xl sm:text-4xl font-bold text-white tracking-tight">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-sky-100/80 text-sky-700 text-xs font-semibold uppercase tracking-wider mb-1 border border-sky-200/60">
+              <Award className="w-3.5 h-3.5 text-sky-600" />
+              <span>Proven Track Record</span>
+            </div>
+            <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight">
               Why Clients Choose Us
             </h2>
-            <div className="space-y-2 text-slate-300 text-sm sm:text-base text-center max-w-2xl mx-auto leading-relaxed">
+            <div className="space-y-2 text-slate-600 text-sm sm:text-base text-center max-w-2xl mx-auto leading-relaxed">
               {whyChooseUs.map((point, idx) => (
                 <p key={idx} className="p-1">
                   • {point}
                 </p>
               ))}
             </div>
+            <div className="w-16 h-1 bg-gradient-to-r from-sky-400 to-blue-600 mx-auto mt-4 rounded-full"></div>
           </div>
 
-          {/* 4 Counter Items with Floating Cards */}
+          {/* 4 Counter Items with Crisp White Floating Cards */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
             {counters.map((item, idx) => {
               const Icon = item.icon;
               return (
                 <div
                   key={idx}
-                  className="p-6 rounded-2xl bg-slate-800/60 border border-slate-700/80 hover:border-sky-500/50 card-interactive shadow-lg flex flex-col items-center group"
+                  className="p-6 rounded-2xl bg-white border border-slate-200 hover:border-sky-400 card-interactive shadow-xs hover:shadow-lg flex flex-col items-center group"
                 >
-                  <div className="w-12 h-12 rounded-xl bg-slate-900 border border-slate-700 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
-                    <Icon className={`w-6 h-6 ${item.color}`} />
+                  <div className="w-12 h-12 rounded-xl bg-sky-50 border border-sky-200/60 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+                    <Icon className="w-6 h-6 text-sky-600" />
                   </div>
-                  <div className="text-4xl sm:text-5xl font-black text-white group-hover:text-sky-400 transition-colors">
+                  <div className="text-4xl sm:text-5xl font-black text-slate-900 group-hover:text-sky-600 transition-colors">
                     {item.count}
                   </div>
-                  <h3 className="text-xs font-bold text-slate-400 uppercase tracking-wider mt-2">
+                  <h3 className="text-xs font-bold text-slate-500 uppercase tracking-wider mt-2">
                     {item.label}
                   </h3>
                 </div>

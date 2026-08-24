@@ -299,19 +299,30 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* 7. Bottom Call To Action with Shimmer Effect */}
-      <section className="py-20 bg-slate-950 text-white text-center border-t border-slate-800 relative">
+      {/* 7. Bottom Call To Action with Royal Blue & Indigo Gradient (Distinct from Footer) */}
+      <section className="py-20 bg-gradient-to-r from-sky-600 via-blue-600 to-indigo-700 text-white text-center relative overflow-hidden shadow-xl">
+        {/* Ambient Radial Lights */}
+        <div className="absolute inset-0 bg-radial-at-c from-white/15 via-transparent to-transparent opacity-60 pointer-events-none animate-pulse-subtle" />
+        <div className="absolute -top-20 -left-20 w-80 h-80 bg-sky-300/20 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute -bottom-20 -right-20 w-80 h-80 bg-indigo-300/20 rounded-full blur-3xl pointer-events-none" />
+
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6 relative z-10">
-          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight">
+          <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-white/15 text-white border border-white/25 text-xs font-semibold uppercase tracking-wider backdrop-blur-md">
+            <Sparkles className="w-3.5 h-3.5 text-amber-300 animate-spin" style={{ animationDuration: "8s" }} />
+            <span>Start Your Journey</span>
+          </div>
+
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-white leading-tight">
             Let's Create Something Together
           </h2>
-          <p className="text-slate-300 text-base sm:text-lg max-w-xl mx-auto leading-relaxed">
+          <p className="text-sky-100 text-base sm:text-lg max-w-xl mx-auto leading-relaxed">
             “Our tailored solutions ensure compliance with industry regulations and align with your unique business workflows.
           </p>
+
           <div className="pt-2">
             <Link
               href="/contact"
-              className="relative inline-flex items-center gap-2 bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-600 hover:to-blue-700 text-white px-8 py-3.5 rounded-full font-bold text-sm shadow-xl shadow-sky-500/30 transition-all uppercase tracking-wider transform hover:-translate-y-0.5 overflow-hidden group"
+              className="relative inline-flex items-center gap-2 bg-white text-sky-700 hover:bg-sky-50 hover:text-sky-800 px-9 py-4 rounded-full font-bold text-sm sm:text-base shadow-2xl shadow-slate-950/20 transition-all uppercase tracking-wider transform hover:-translate-y-0.5 overflow-hidden group"
             >
               <span className="absolute inset-0 w-full h-full animate-shimmer pointer-events-none" />
               <span className="relative z-10">Contact Us</span>

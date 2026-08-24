@@ -71,8 +71,8 @@ export default function TeamPage() {
             <div className="lg:col-span-6">
               <div className="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-slate-50 group">
                 <Image
-                  src="/images/about-us.jpg"
-                  alt="Saya Intellicall Team"
+                  src="/images/about/team-hero.jpg"
+                  alt="Saya Intellicall Dedicated Team"
                   width={700}
                   height={500}
                   className="w-full h-[480px] object-cover group-hover:scale-105 transition-transform duration-700 ease-out"

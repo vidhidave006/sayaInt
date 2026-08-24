@@ -7,7 +7,7 @@ export default function GallerySection() {
     { src: "/images/company/gallery-3.jpg", alt: "Team Collaboration & Strategy Sessions" },
     { src: "/images/company/gallery-4.jpg", alt: "Customer Support Floor" },
     { src: "/images/company/gallery-5.jpg", alt: "Modern BPO Facilities" },
-    { src: "/images/about-us.jpg", alt: "Saya Intellicall Operations" },
+    { src: "/images/company/telecalling-tech.jpg", alt: "Saya Intellicall Operations" },
   ];
 
   return (

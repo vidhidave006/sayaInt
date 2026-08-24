@@ -69,7 +69,7 @@ export default function AboutPage() {
     "/images/company/gallery-3.jpg",
     "/images/company/gallery-4.jpg",
     "/images/company/gallery-5.jpg",
-    "/images/about-us.jpg",
+    "/images/about/team-hero.jpg",
   ];
 
   const counters = [
@@ -111,8 +111,8 @@ export default function AboutPage() {
             <div className="lg:col-span-6">
               <div className="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-slate-50 group">
                 <Image
-                  src="/images/company/company-image.jpg"
-                  alt="Saya Intellicall Company"
+                  src="/images/company/telecalling-tech.jpg"
+                  alt="Saya Intellicall Telecalling & BPO Operations"
                   width={700}
                   height={450}
                   className="w-full h-[450px] object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
@@ -147,7 +147,7 @@ export default function AboutPage() {
               </div>
               <div className="relative rounded-2xl overflow-hidden shadow-md bg-slate-100 border border-slate-200 mt-4">
                 <Image
-                  src="/images/company/company-image-2.jpg"
+                  src="/images/company/mission-strategy.jpg"
                   alt="Our Mission"
                   width={600}
                   height={350}
@@ -171,7 +171,7 @@ export default function AboutPage() {
               </div>
               <div className="relative rounded-2xl overflow-hidden shadow-md bg-slate-100 border border-slate-200 mt-4">
                 <Image
-                  src="/images/company/company-image-3.jpg"
+                  src="/images/company/vision-support.jpg"
                   alt="Our Vision"
                   width={600}
                   height={350}

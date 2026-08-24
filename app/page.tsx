@@ -122,8 +122,8 @@ export default function Home() {
             <div className="md:col-span-4 hidden md:block">
               <div className="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-slate-50 group">
                 <Image
-                  src="/images/about/member.jpg"
-                  alt="Saya Intellicall Team Member"
+                  src="/images/about/telecalling-member.jpg"
+                  alt="Saya Intellicall Telecalling Specialist"
                   width={400}
                   height={500}
                   className="w-full h-[520px] object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
@@ -215,8 +215,8 @@ export default function Home() {
             {/* Left Image with Floating Experience Badge */}
             <div className="relative rounded-3xl overflow-hidden shadow-xl bg-white p-3 border border-slate-200 group">
               <Image
-                src="/images/about/about-2.png"
-                alt="We Are Saya"
+                src="/images/about/we-are-saya.jpg"
+                alt="Saya Intellicall Telecalling Team"
                 width={600}
                 height={400}
                 className="w-full h-auto object-cover rounded-2xl group-hover:scale-102 transition-transform duration-500"

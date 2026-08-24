@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import HeroOrbitalAnimation from "@/components/HeroOrbitalAnimation";
+import MagneticButton from "@/components/MagneticButton";
 import {
   ChevronLeft,
   ChevronRight,
@@ -154,19 +155,23 @@ export default function HeroSlider() {
                       isActive ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
                     }`}
                   >
-                    <Link
-                      href={slide.btnHref}
-                      className="inline-flex items-center gap-2 bg-sky-500 hover:bg-sky-600 text-white px-8 py-3.5 rounded-md font-semibold text-sm sm:text-base shadow-lg shadow-sky-500/30 hover:shadow-sky-500/50 transition-all uppercase tracking-wider"
-                    >
-                      <span>{slide.btnText}</span>
-                      <ArrowRight className="w-4 h-4" />
-                    </Link>
-                    <Link
-                      href="/contact"
-                      className="inline-flex items-center gap-2 bg-transparent hover:bg-white/10 text-white border border-white/40 px-6 py-3.5 rounded-md font-semibold text-sm sm:text-base backdrop-blur-xs transition-all uppercase tracking-wider"
-                    >
-                      <span>Contact Us</span>
-                    </Link>
+                    <MagneticButton strength={22}>
+                      <Link
+                        href={slide.btnHref}
+                        className="inline-flex items-center gap-2 bg-sky-500 hover:bg-sky-600 text-white px-8 py-3.5 rounded-md font-semibold text-sm sm:text-base shadow-lg shadow-sky-500/30 hover:shadow-sky-500/50 transition-all uppercase tracking-wider"
+                      >
+                        <span>{slide.btnText}</span>
+                        <ArrowRight className="w-4 h-4" />
+                      </Link>
+                    </MagneticButton>
+                    <MagneticButton strength={18}>
+                      <Link
+                        href="/contact"
+                        className="inline-flex items-center gap-2 bg-transparent hover:bg-white/10 text-white border border-white/40 px-6 py-3.5 rounded-md font-semibold text-sm sm:text-base backdrop-blur-xs transition-all uppercase tracking-wider"
+                      >
+                        <span>Contact Us</span>
+                      </Link>
+                    </MagneticButton>
                   </div>
                 </div>
 

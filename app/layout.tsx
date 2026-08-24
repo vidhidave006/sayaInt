@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
-import { Inter, Plus_Jakarta_Sans } from "next/font/google";
+import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import WhatsAppFloat from "@/components/WhatsAppFloat";
+import CursorSpotlight from "@/components/CursorSpotlight";
 
 const jakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -62,6 +63,7 @@ export default function RootLayout({
         <link rel="shortcut icon" href="/images/favicon.png" type="image/png" />
       </head>
       <body className="min-h-screen flex flex-col font-sans bg-white text-slate-900 antialiased selection:bg-sky-500 selection:text-white">
+        <CursorSpotlight />
         <Navbar />
         <main className="flex-1">{children}</main>
         <Footer />
@@ -70,3 +72,4 @@ export default function RootLayout({
     </html>
   );
 }
+

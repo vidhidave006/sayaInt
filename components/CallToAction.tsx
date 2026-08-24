@@ -1,4 +1,5 @@
 import Link from "next/link";
+import MagneticButton from "@/components/MagneticButton";
 import { ArrowRight, PhoneCall, MessageSquare, Sparkles } from "lucide-react";
 
 interface CTAProps {
@@ -38,32 +39,38 @@ export default function CallToAction({
         </p>
 
         <div className="flex flex-wrap items-center justify-center gap-4 pt-4">
-          <Link
-            href={primaryBtnHref}
-            className="inline-flex items-center gap-2 bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-600 hover:to-blue-700 text-white px-8 py-3.5 rounded-full font-semibold text-base shadow-xl shadow-sky-500/25 hover:shadow-sky-500/40 transition-all transform hover:-translate-y-0.5"
-          >
-            <span>{primaryBtnText}</span>
-            <ArrowRight className="w-4 h-4" />
-          </Link>
+          <MagneticButton strength={25}>
+            <Link
+              href={primaryBtnHref}
+              className="inline-flex items-center gap-2 bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-600 hover:to-blue-700 text-white px-8 py-3.5 rounded-full font-semibold text-base shadow-xl shadow-sky-500/25 hover:shadow-sky-500/40 transition-all transform hover:-translate-y-0.5"
+            >
+              <span>{primaryBtnText}</span>
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </MagneticButton>
 
-          <a
-            href="https://wa.me/919890044786?text=Hello%20Saya%20Intellicall"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white px-7 py-3.5 rounded-full font-semibold text-base shadow-xl shadow-emerald-600/25 transition-all transform hover:-translate-y-0.5"
-          >
-            <MessageSquare className="w-4 h-4" />
-            <span>WhatsApp Quick Chat</span>
-          </a>
+          <MagneticButton strength={20}>
+            <a
+              href="https://wa.me/919890044786?text=Hello%20Saya%20Intellicall"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white px-7 py-3.5 rounded-full font-semibold text-base shadow-xl shadow-emerald-600/25 transition-all transform hover:-translate-y-0.5"
+            >
+              <MessageSquare className="w-4 h-4" />
+              <span>WhatsApp Quick Chat</span>
+            </a>
+          </MagneticButton>
 
           {showPhone && (
-            <a
-              href="tel:+918983689836"
-              className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white border border-white/20 px-6 py-3.5 rounded-full font-semibold text-base backdrop-blur-xs transition-all"
-            >
-              <PhoneCall className="w-4 h-4 text-sky-400" />
-              <span>+91 89836 89836</span>
-            </a>
+            <MagneticButton strength={18}>
+              <a
+                href="tel:+918983689836"
+                className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white border border-white/20 px-6 py-3.5 rounded-full font-semibold text-base backdrop-blur-xs transition-all"
+              >
+                <PhoneCall className="w-4 h-4 text-sky-400" />
+                <span>+91 89836 89836</span>
+              </a>
+            </MagneticButton>
           )}
         </div>
       </div>

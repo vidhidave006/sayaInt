@@ -14,6 +14,7 @@ import {
   ArrowRight,
   Headphones
 } from "lucide-react";
+import MagneticButton from "@/components/MagneticButton";
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -116,20 +117,24 @@ export default function Navbar() {
 
           {/* CTA Buttons */}
           <div className="hidden lg:flex items-center space-x-3">
-            <a
-              href="tel:+918983689836"
-              className="flex items-center gap-2 text-slate-700 hover:text-sky-600 px-3 py-2 text-sm font-medium transition-colors"
-            >
-              <Headphones className="w-4 h-4 text-sky-500" />
-              <span>Call Us</span>
-            </a>
-            <Link
-              href="/contact"
-              className="inline-flex items-center gap-2 bg-gradient-to-r from-sky-600 to-blue-600 hover:from-sky-700 hover:to-blue-700 text-white px-5 py-2.5 rounded-full text-sm font-semibold shadow-md shadow-sky-500/20 hover:shadow-lg hover:shadow-sky-500/30 transition-all transform hover:-translate-y-0.5"
-            >
-              <span>Get Free Quote</span>
-              <ArrowRight className="w-4 h-4" />
-            </Link>
+            <MagneticButton strength={15}>
+              <a
+                href="tel:+918983689836"
+                className="flex items-center gap-2 text-slate-700 hover:text-sky-600 px-3 py-2 text-sm font-medium transition-colors"
+              >
+                <Headphones className="w-4 h-4 text-sky-500" />
+                <span>Call Us</span>
+              </a>
+            </MagneticButton>
+            <MagneticButton strength={20}>
+              <Link
+                href="/contact"
+                className="inline-flex items-center gap-2 bg-gradient-to-r from-sky-600 to-blue-600 hover:from-sky-700 hover:to-blue-700 text-white px-5 py-2.5 rounded-full text-sm font-semibold shadow-md shadow-sky-500/20 hover:shadow-lg hover:shadow-sky-500/30 transition-all transform hover:-translate-y-0.5"
+              >
+                <span>Get Free Quote</span>
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+            </MagneticButton>
           </div>
 
           {/* Mobile Menu Button */}

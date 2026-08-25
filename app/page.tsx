@@ -275,34 +275,33 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 4. Call To Action Section with Animated Waves & Shimmer CTA */}
-      <section className="py-20 bg-slate-950 text-white text-center relative overflow-hidden">
-        {/* Dynamic Background Light Beam */}
-        <div className="absolute inset-0 pointer-events-none opacity-20">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-sky-500 rounded-full blur-[140px]" />
-        </div>
+      {/* 4. Call To Action Section with Light Aesthetic */}
+      <section className="py-20 lg:py-28 bg-white text-slate-900 text-center relative overflow-hidden border-t border-slate-200/80">
+        {/* Subtle Ambient Background Gradients */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-sky-100/70 rounded-full blur-[100px] pointer-events-none" />
+        <div className="absolute -bottom-10 right-10 w-72 h-72 bg-blue-100/60 rounded-full blur-3xl pointer-events-none" />
 
         <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6 z-10">
           {/* Animated Audio Frequency Equalizer Bars */}
           <div className="flex items-center justify-center gap-1.5 py-1">
-            <span className="w-1.5 h-4 bg-sky-400 rounded-full animate-pulse" />
-            <span className="w-1.5 h-7 bg-emerald-400 rounded-full animate-pulse" style={{ animationDelay: "150ms" }} />
-            <span className="w-1.5 h-10 bg-sky-300 rounded-full animate-pulse" style={{ animationDelay: "300ms" }} />
-            <span className="w-1.5 h-6 bg-teal-400 rounded-full animate-pulse" style={{ animationDelay: "450ms" }} />
-            <span className="w-1.5 h-3 bg-sky-400 rounded-full animate-pulse" style={{ animationDelay: "200ms" }} />
+            <span className="w-1.5 h-4 bg-sky-500 rounded-full animate-pulse" />
+            <span className="w-1.5 h-7 bg-emerald-500 rounded-full animate-pulse" style={{ animationDelay: "150ms" }} />
+            <span className="w-1.5 h-10 bg-sky-600 rounded-full animate-pulse" style={{ animationDelay: "300ms" }} />
+            <span className="w-1.5 h-6 bg-teal-500 rounded-full animate-pulse" style={{ animationDelay: "450ms" }} />
+            <span className="w-1.5 h-3 bg-sky-500 rounded-full animate-pulse" style={{ animationDelay: "200ms" }} />
           </div>
 
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-white leading-tight">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-slate-900 leading-tight">
             Let's Create Something Together
           </h2>
-          <p className="text-slate-300 text-base sm:text-lg max-w-xl mx-auto leading-relaxed">
+          <p className="text-slate-600 text-base sm:text-lg max-w-xl mx-auto leading-relaxed">
             Every Ring is a New Opportunity. Let’s make each One Count.
           </p>
 
           <div className="pt-3">
             <Link
               href="/contact"
-              className="relative inline-flex items-center gap-2 bg-gradient-to-r from-sky-500 via-blue-600 to-sky-500 hover:from-sky-600 hover:to-blue-700 text-white px-9 py-4 rounded-full font-bold text-sm sm:text-base shadow-2xl shadow-sky-500/40 hover:shadow-sky-500/60 hover:-translate-y-0.5 transition-all duration-300 uppercase tracking-wider overflow-hidden group cursor-pointer"
+              className="relative inline-flex items-center gap-2 bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-600 hover:to-blue-700 text-white px-9 py-4 rounded-full font-bold text-sm sm:text-base shadow-xl shadow-sky-500/25 hover:shadow-sky-500/40 hover:-translate-y-0.5 transition-all duration-300 uppercase tracking-wider overflow-hidden group cursor-pointer"
             >
               {/* Shimmer Effect */}
               <span className="absolute inset-0 w-full h-full animate-shimmer pointer-events-none" />

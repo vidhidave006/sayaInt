@@ -4,7 +4,7 @@ import { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import HeroOrbitalAnimation from "@/components/HeroOrbitalAnimation";
-import MagneticButton from "@/components/MagneticButton";
+import LiquidOrbBackground from "@/components/LiquidOrbBackground";
 import {
   ChevronLeft,
   ChevronRight,
@@ -91,6 +91,9 @@ export default function HeroSlider() {
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
+      {/* Live Liquid Orb Interactive Animated Background */}
+      <LiquidOrbBackground intensity="vibrant" showParticles={true} />
+
       {/* Background Slides */}
       {slides.map((slide, index) => {
         const isActive = index === current;
@@ -101,19 +104,19 @@ export default function HeroSlider() {
               isActive ? "opacity-100 z-10" : "opacity-0 z-0 pointer-events-none"
             }`}
           >
-            {/* Background Image with Dark Gradient for Maximum Contrast */}
-            <div className="absolute inset-0">
+            {/* Background Image with Dark Glassmorphism Overlay for Live Liquid Orb Glow */}
+            <div className="absolute inset-0 pointer-events-none">
               <Image
                 src={slide.image}
                 alt={slide.title}
                 fill
                 priority={index === 0}
-                className={`object-cover object-center transition-transform duration-7000 ease-out ${
+                className={`object-cover object-center opacity-25 mix-blend-luminosity transition-transform duration-7000 ease-out ${
                   isActive ? "scale-105" : "scale-100"
                 }`}
               />
-              <div className="absolute inset-0 bg-slate-950/80 backdrop-blur-[2px]" />
-              <div className="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-950/80 to-slate-950/60" />
+              <div className="absolute inset-0 bg-slate-950/50 backdrop-blur-[1px]" />
+              <div className="absolute inset-0 bg-gradient-to-r from-slate-950/90 via-slate-950/40 to-slate-950/80" />
             </div>
 
             {/* Slide Content Grid */}
@@ -155,23 +158,19 @@ export default function HeroSlider() {
                       isActive ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
                     }`}
                   >
-                    <MagneticButton strength={22}>
-                      <Link
-                        href={slide.btnHref}
-                        className="inline-flex items-center gap-2 bg-sky-500 hover:bg-sky-600 text-white px-8 py-3.5 rounded-md font-semibold text-sm sm:text-base shadow-lg shadow-sky-500/30 hover:shadow-sky-500/50 transition-all uppercase tracking-wider"
-                      >
-                        <span>{slide.btnText}</span>
-                        <ArrowRight className="w-4 h-4" />
-                      </Link>
-                    </MagneticButton>
-                    <MagneticButton strength={18}>
-                      <Link
-                        href="/contact"
-                        className="inline-flex items-center gap-2 bg-transparent hover:bg-white/10 text-white border border-white/40 px-6 py-3.5 rounded-md font-semibold text-sm sm:text-base backdrop-blur-xs transition-all uppercase tracking-wider"
-                      >
-                        <span>Contact Us</span>
-                      </Link>
-                    </MagneticButton>
+                    <Link
+                      href={slide.btnHref}
+                      className="group inline-flex items-center gap-2 bg-sky-500 hover:bg-sky-600 text-white px-8 py-3.5 rounded-md font-semibold text-sm sm:text-base shadow-lg shadow-sky-500/30 hover:shadow-sky-500/50 hover:-translate-y-0.5 transition-all duration-300 uppercase tracking-wider cursor-pointer"
+                    >
+                      <span>{slide.btnText}</span>
+                      <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
+                    </Link>
+                    <Link
+                      href="/contact"
+                      className="inline-flex items-center gap-2 bg-transparent hover:bg-white/10 text-white border border-white/40 hover:border-white/70 px-6 py-3.5 rounded-md font-semibold text-sm sm:text-base backdrop-blur-xs hover:-translate-y-0.5 transition-all duration-300 uppercase tracking-wider cursor-pointer"
+                    >
+                      <span>Contact Us</span>
+                    </Link>
                   </div>
                 </div>
 

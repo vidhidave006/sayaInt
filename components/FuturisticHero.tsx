@@ -3,7 +3,6 @@
 import React from "react";
 import Link from "next/link";
 import FluidHeroBlob from "@/components/FluidHeroBlob";
-import MagneticButton from "@/components/MagneticButton";
 import { ArrowRight, Sparkles, CheckCircle2, ChevronRight } from "lucide-react";
 
 export default function FuturisticHero() {
@@ -40,24 +39,20 @@ export default function FuturisticHero() {
 
         {/* Action Pill Buttons */}
         <div className="flex flex-wrap items-center justify-center gap-3.5">
-          <MagneticButton strength={15}>
-            <Link
-              href="/service"
-              className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white border border-white/20 px-6 sm:px-7 py-2.5 sm:py-3 rounded-full font-semibold text-xs sm:text-sm backdrop-blur-md shadow-md transition-all"
-            >
-              <span>Learn more</span>
-            </Link>
-          </MagneticButton>
+          <Link
+            href="/service"
+            className="group inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white border border-white/20 hover:border-white/40 px-6 sm:px-7 py-2.5 sm:py-3 rounded-full font-semibold text-xs sm:text-sm backdrop-blur-md shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 cursor-pointer"
+          >
+            <span>Learn more</span>
+          </Link>
 
-          <MagneticButton strength={18}>
-            <Link
-              href="/contact"
-              className="inline-flex items-center gap-2 bg-sky-400 hover:bg-sky-300 text-slate-950 font-bold px-6 sm:px-7 py-2.5 sm:py-3 rounded-full text-xs sm:text-sm shadow-lg shadow-sky-400/30 hover:shadow-sky-400/50 transition-all uppercase tracking-wider"
-            >
-              <span>Get Started</span>
-              <ArrowRight className="w-3.5 h-3.5" />
-            </Link>
-          </MagneticButton>
+          <Link
+            href="/contact"
+            className="group inline-flex items-center gap-2 bg-sky-400 hover:bg-sky-300 text-slate-950 font-bold px-6 sm:px-7 py-2.5 sm:py-3 rounded-full text-xs sm:text-sm shadow-lg shadow-sky-400/30 hover:shadow-sky-400/50 hover:-translate-y-0.5 transition-all duration-300 uppercase tracking-wider cursor-pointer"
+          >
+            <span>Get Started</span>
+            <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform duration-300" />
+          </Link>
         </div>
       </div>
 

@@ -2,7 +2,6 @@ import Image from "next/image";
 import Link from "next/link";
 import FuturisticHero from "@/components/FuturisticHero";
 import SpotlightCard from "@/components/SpotlightCard";
-import MagneticButton from "@/components/MagneticButton";
 import {
   PhoneIncoming,
   PhoneOutgoing,
@@ -263,15 +262,13 @@ export default function Home() {
               </ul>
 
               <div className="pt-2">
-                <MagneticButton strength={20}>
-                  <Link
-                    href="/service"
-                    className="inline-flex items-center gap-2 bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-600 hover:to-blue-700 text-white px-8 py-3.5 rounded-full font-semibold text-sm shadow-lg shadow-sky-500/25 hover:shadow-sky-500/40 transition-all uppercase tracking-wider transform hover:-translate-y-0.5"
-                  >
-                    <span>Learn More</span>
-                    <ArrowRight className="w-4 h-4" />
-                  </Link>
-                </MagneticButton>
+                <Link
+                  href="/service"
+                  className="group inline-flex items-center gap-2 bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-600 hover:to-blue-700 text-white px-8 py-3.5 rounded-full font-semibold text-sm shadow-lg shadow-sky-500/25 hover:shadow-sky-500/40 hover:-translate-y-0.5 transition-all duration-300 uppercase tracking-wider cursor-pointer"
+                >
+                  <span>Learn More</span>
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
+                </Link>
               </div>
             </div>
           </div>
@@ -303,17 +300,15 @@ export default function Home() {
           </p>
 
           <div className="pt-3">
-            <MagneticButton strength={25}>
-              <Link
-                href="/contact"
-                className="relative inline-flex items-center gap-2 bg-gradient-to-r from-sky-500 via-blue-600 to-sky-500 hover:from-sky-600 hover:to-blue-700 text-white px-9 py-4 rounded-full font-bold text-sm sm:text-base shadow-2xl shadow-sky-500/40 transition-all uppercase tracking-wider transform hover:-translate-y-0.5 overflow-hidden group"
-              >
-                {/* Shimmer Effect */}
-                <span className="absolute inset-0 w-full h-full animate-shimmer pointer-events-none" />
-                <span className="relative z-10">Contact Us</span>
-                <ArrowRight className="w-4 h-4 relative z-10 group-hover:translate-x-1 transition-transform" />
-              </Link>
-            </MagneticButton>
+            <Link
+              href="/contact"
+              className="relative inline-flex items-center gap-2 bg-gradient-to-r from-sky-500 via-blue-600 to-sky-500 hover:from-sky-600 hover:to-blue-700 text-white px-9 py-4 rounded-full font-bold text-sm sm:text-base shadow-2xl shadow-sky-500/40 hover:shadow-sky-500/60 hover:-translate-y-0.5 transition-all duration-300 uppercase tracking-wider overflow-hidden group cursor-pointer"
+            >
+              {/* Shimmer Effect */}
+              <span className="absolute inset-0 w-full h-full animate-shimmer pointer-events-none" />
+              <span className="relative z-10">Contact Us</span>
+              <ArrowRight className="w-4 h-4 relative z-10 group-hover:translate-x-1 transition-transform duration-300" />
+            </Link>
           </div>
         </div>
       </section>

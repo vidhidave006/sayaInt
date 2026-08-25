@@ -37,21 +37,22 @@ export default function FuturisticHero() {
           Explore how AI-powered telecalling and dedicated inbound & outbound customer support are revolutionizing engagement, sales, and brand loyalty across India.
         </p>
 
-        {/* Action Pill Buttons */}
-        <div className="flex flex-wrap items-center justify-center gap-3.5">
+        {/* Action Pill Buttons (Royal Sky & Ocean Blue Gradient Theme) */}
+        <div className="flex flex-wrap items-center justify-center gap-4">
           <Link
             href="/service"
-            className="group inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white border border-white/20 hover:border-white/40 px-6 sm:px-7 py-2.5 sm:py-3 rounded-full font-semibold text-xs sm:text-sm backdrop-blur-md shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 cursor-pointer"
+            className="group inline-flex items-center gap-2 bg-slate-900/80 hover:bg-slate-800 text-sky-300 hover:text-white border border-sky-500/30 hover:border-sky-400 px-6 sm:px-7 py-2.5 sm:py-3 rounded-full font-semibold text-xs sm:text-sm backdrop-blur-md shadow-md hover:shadow-sky-500/20 hover:-translate-y-0.5 transition-all duration-300 cursor-pointer"
           >
             <span>Learn more</span>
           </Link>
 
           <Link
             href="/contact"
-            className="group inline-flex items-center gap-2 bg-sky-400 hover:bg-sky-300 text-slate-950 font-bold px-6 sm:px-7 py-2.5 sm:py-3 rounded-full text-xs sm:text-sm shadow-lg shadow-sky-400/30 hover:shadow-sky-400/50 hover:-translate-y-0.5 transition-all duration-300 uppercase tracking-wider cursor-pointer"
+            className="group relative inline-flex items-center gap-2 bg-gradient-to-r from-sky-500 via-blue-600 to-sky-500 hover:from-sky-600 hover:to-blue-700 text-white font-bold px-7 sm:px-8 py-2.5 sm:py-3 rounded-full text-xs sm:text-sm shadow-xl shadow-sky-500/30 hover:shadow-sky-500/50 hover:-translate-y-0.5 transition-all duration-300 uppercase tracking-wider cursor-pointer overflow-hidden"
           >
-            <span>Get Started</span>
-            <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform duration-300" />
+            <span className="absolute inset-0 w-full h-full animate-shimmer pointer-events-none" />
+            <span className="relative z-10">Get Started</span>
+            <ArrowRight className="w-3.5 h-3.5 relative z-10 group-hover:translate-x-1 transition-transform duration-300" />
           </Link>
         </div>
       </div>
@@ -70,7 +71,7 @@ export default function FuturisticHero() {
             <div className="pt-0.5">
               <Link
                 href="/about"
-                className="inline-flex items-center gap-1 bg-white/10 hover:bg-white/20 text-white border border-white/15 px-3.5 py-1 rounded-full text-[11px] font-semibold backdrop-blur-md transition-all group"
+                className="inline-flex items-center gap-1.5 bg-sky-500/15 hover:bg-sky-500/25 text-sky-300 hover:text-white border border-sky-400/30 hover:border-sky-400 px-3.5 py-1 rounded-full text-[11px] font-semibold backdrop-blur-md transition-all group"
               >
                 <span>Learn more</span>
                 <ChevronRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />

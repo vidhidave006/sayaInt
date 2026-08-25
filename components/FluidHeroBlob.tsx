@@ -18,7 +18,7 @@ export default function FluidHeroBlob() {
       0.1,
       100
     );
-    camera.position.z = 6.4;
+    camera.position.z = 6.2;
 
     const renderer = new THREE.WebGLRenderer({
       antialias: true,
@@ -28,10 +28,10 @@ export default function FluidHeroBlob() {
     renderer.setSize(container.clientWidth, container.clientHeight);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    renderer.toneMappingExposure = 1.3;
+    renderer.toneMappingExposure = 1.35;
     container.appendChild(renderer.domElement);
 
-    // 2. Custom Simplex Noise Shader Material for the 3D Twisted Torus Knot Ribbon
+    // 2. Vertex & Fragment Shader for Chromatic Iridescent Liquid Bubble (Pinterest Reference)
     const vertexShader = `
       uniform float uTime;
       uniform float uSpeed;
@@ -43,8 +43,9 @@ export default function FluidHeroBlob() {
       varying vec3 vPosition;
       varying float vDisplacement;
       varying vec3 vWorldPosition;
+      varying vec3 vViewPosition;
 
-      // Classic 3D Simplex Noise
+      // 3D Simplex Noise
       vec4 permute(vec4 x){return mod(((x*34.0)+1.0)*x, 289.0);}
       vec4 taylorInvSqrt(vec4 r){return 1.79284291400159 - 0.85373472095314 * r;}
 
@@ -111,35 +112,34 @@ export default function FluidHeroBlob() {
       void main() {
         vNormal = normal;
         
-        // Fluid Wave displacement along Torus Knot surface
+        // Organic Zero-Gravity Bubble Surface Undulation
         float time = uTime * uSpeed;
-        vec3 noisePos = position * uNoiseDensity + vec3(time * 0.4, time * 0.3, time * 0.5);
+        vec3 noisePos = position * uNoiseDensity + vec3(time * 0.35, time * 0.28, time * 0.42);
         
-        // Organic ripple waves
+        // Gentle fluid folds & surface tension waves
         float noise1 = snoise(noisePos);
-        float noise2 = snoise(noisePos * 2.2 + vec3(time * 0.2)) * 0.45;
+        float noise2 = snoise(noisePos * 2.4 - vec3(time * 0.2)) * 0.4;
+        float noise3 = snoise(noisePos * 4.8 + vec3(time * 0.15)) * 0.15;
         
-        float totalDisplacement = (noise1 + noise2) * uNoiseStrength;
+        float totalDisplacement = (noise1 + noise2 + noise3) * uNoiseStrength;
         vDisplacement = totalDisplacement;
 
-        // Subtle mouse push
-        vec3 mouseOffset = vec3(uMouse.x * 0.25, uMouse.y * 0.25, 0.0);
-        vec3 newPos = position + normal * totalDisplacement + mouseOffset * 0.12;
+        // Subtle interactive mouse attraction
+        vec3 mouseOffset = vec3(uMouse.x * 0.3, uMouse.y * 0.3, 0.0);
+        vec3 newPos = position + normal * totalDisplacement + mouseOffset * 0.1;
         vPosition = newPos;
 
         vec4 worldPos = modelMatrix * vec4(newPos, 1.0);
         vWorldPosition = worldPos.xyz;
 
-        gl_Position = projectionMatrix * viewMatrix * worldPos;
+        vec4 mvPosition = viewMatrix * worldPos;
+        vViewPosition = -mvPosition.xyz;
+
+        gl_Position = projectionMatrix * mvPosition;
       }
     `;
 
     const fragmentShader = `
-      uniform vec3 uColorBase;
-      uniform vec3 uColorMid;
-      uniform vec3 uColorHighlight;
-      uniform vec3 uColorCyan;
-      uniform vec3 uColorDeep;
       uniform vec3 uLightPos1;
       uniform vec3 uLightPos2;
       uniform vec3 uLightPos3;
@@ -149,74 +149,99 @@ export default function FluidHeroBlob() {
       varying vec3 vPosition;
       varying float vDisplacement;
       varying vec3 vWorldPosition;
+      varying vec3 vViewPosition;
+
+      // Cosine-based Thin-Film Rainbow Spectral Chromatic Dispersion
+      vec3 rainbow(float t) {
+        vec3 a = vec3(0.65, 0.55, 0.5);
+        vec3 b = vec3(0.5, 0.6, 0.65);
+        vec3 c = vec3(1.0, 1.0, 1.0);
+        vec3 d = vec3(0.0, 0.33, 0.67);
+        return a + b * cos(6.28318 * (c * t + d));
+      }
 
       void main() {
-        // High-precision normal reconstruction
+        // Compute perturbed surface normal
         vec3 dX = dFdx(vWorldPosition);
         vec3 dY = dFdy(vWorldPosition);
         vec3 normal = normalize(cross(dX, dY));
 
         vec3 viewDir = normalize(cameraPosition - vWorldPosition);
 
-        // 1. Fresnel Edge Reflection (Glossy Metallic Chrome Rim)
-        float fresnel = pow(1.0 - max(dot(viewDir, normal), 0.0), 2.4);
-        float innerFresnel = pow(1.0 - max(dot(viewDir, normal), 0.0), 1.1);
+        // 1. Extreme Thin-Film Fresnel Edge Reflection
+        float NdotV = dot(normal, viewDir);
+        float fresnel = pow(clamp(1.0 - abs(NdotV), 0.0, 1.0), 2.2);
+        float deepFresnel = pow(clamp(1.0 - abs(NdotV), 0.0, 1.0), 4.5);
 
-        // 2. Light 1: Primary Pure White Specular Light from top-right
+        // 2. Light 1: Golden Amber / Warm Light from Top-Right
         vec3 lightDir1 = normalize(uLightPos1 - vWorldPosition);
         float diff1 = max(dot(normal, lightDir1), 0.0);
         vec3 reflectDir1 = reflect(-lightDir1, normal);
-        float spec1 = pow(max(dot(viewDir, reflectDir1), 0.0), 48.0);
+        float spec1 = pow(max(dot(viewDir, reflectDir1), 0.0), 64.0);
 
-        // 3. Light 2: Ice Silver / Bright Specular Light from bottom-left
+        // 3. Light 2: Electric Cyan / Azure Spotlight from Bottom-Left
         vec3 lightDir2 = normalize(uLightPos2 - vWorldPosition);
         float diff2 = max(dot(normal, lightDir2), 0.0);
         vec3 reflectDir2 = reflect(-lightDir2, normal);
-        float spec2 = pow(max(dot(viewDir, reflectDir2), 0.0), 32.0);
+        float spec2 = pow(max(dot(viewDir, reflectDir2), 0.0), 40.0);
 
-        // 4. Light 3: Deep Metallic Backlight
+        // 4. Light 3: Magenta / Soft Pink Rim Light
         vec3 lightDir3 = normalize(uLightPos3 - vWorldPosition);
         float diff3 = max(dot(normal, lightDir3), 0.0);
 
-        // 5. Palette Blending: Metallic Liquid Silver & Chrome
-        vec3 color = uColorDeep;
-        color = mix(color, uColorBase, smoothstep(-0.5, 0.1, vDisplacement));
-        color = mix(color, uColorMid, smoothstep(0.0, 0.65, vDisplacement));
-        color = mix(color, uColorHighlight, diff1 * 0.6 + diff2 * 0.4);
+        // 5. Chromatic Dispersion along bubble rim & folds (Pinterest Look)
+        float spectralCoord = fresnel * 1.35 + vDisplacement * 0.8 + diff1 * 0.4 - diff2 * 0.3 + sin(uTime * 0.2) * 0.1;
+        vec3 chromaticRim = rainbow(spectralCoord);
 
-        // Mirror-grade Chrome Highlights & Specular reflections
-        color += uColorCyan * spec1 * 2.2;
-        color += uColorHighlight * spec2 * 1.5;
+        // Vibrant Flame Gold / Amber & Neon Orange Accents on one side
+        vec3 goldAmber = vec3(1.0, 0.72, 0.1);
+        vec3 neonOrange = vec3(1.0, 0.32, 0.05);
+        vec3 electricCyan = vec3(0.0, 0.85, 1.0);
+        vec3 deepAzure = vec3(0.05, 0.3, 0.95);
+        vec3 magentaPink = vec3(1.0, 0.2, 0.65);
 
-        // Rim Silver / Ice Glow
-        color += uColorCyan * fresnel * 0.9;
-        color += uColorHighlight * innerFresnel * 0.4;
+        // 6. Translucent Core Base (Deep Obsidian Sapphire glass with inner dark refraction)
+        vec3 baseCore = vec3(0.02, 0.04, 0.09); // Dark transparent liquid body
+        baseCore += deepAzure * (1.0 - fresnel) * 0.15; // Subtle inner blue depth
 
-        // Soft metallic ambient light
-        color += uColorMid * 0.15;
+        // Mix in chromatic dispersion along the perimeter
+        vec3 finalColor = baseCore;
 
-        gl_FragColor = vec4(color, 0.98);
+        // Add warm golden/amber glow on top hemisphere
+        finalColor += mix(goldAmber, neonOrange, diff1) * diff1 * fresnel * 2.8;
+
+        // Add electric cyan/blue glow on opposite rim
+        finalColor += mix(electricCyan, deepAzure, diff2) * diff2 * fresnel * 2.4;
+
+        // Add spectral rainbow fringe (Pink, Green, Yellow, Blue transition)
+        finalColor += chromaticRim * deepFresnel * 1.8;
+
+        // Add magenta / violet secondary flare
+        finalColor += magentaPink * diff3 * fresnel * 1.2;
+
+        // 7. Sharp Glass / Bubble Specular Hotspots
+        finalColor += vec3(1.0, 0.98, 0.92) * spec1 * 2.6; // Golden white specular glint
+        finalColor += vec3(0.8, 0.95, 1.0) * spec2 * 1.8;  // Cyan white specular glint
+
+        // Bubble transparency: Center is translucent dark glass, edges are radiant chromatic fire
+        float alpha = clamp(0.75 + fresnel * 0.25, 0.7, 0.98);
+
+        gl_FragColor = vec4(finalColor, alpha);
       }
     `;
 
-    // 3. Geometry: Twisted Torus Knot Ribbon (Smooth continuous looping ribbon)
-    const geometry = new THREE.TorusKnotGeometry(1.35, 0.44, 256, 64, 2, 3);
+    // 3. Geometry: High-subdivision Fluid Bubble Sphere
+    const geometry = new THREE.IcosahedronGeometry(1.85, 64);
 
     const uniforms = {
       uTime: { value: 0 },
-      uSpeed: { value: 0.38 },
-      uNoiseDensity: { value: 1.1 },
-      uNoiseStrength: { value: 0.35 },
+      uSpeed: { value: 0.3 },
+      uNoiseDensity: { value: 0.9 },
+      uNoiseStrength: { value: 0.38 },
       uMouse: { value: new THREE.Vector2(0, 0) },
-      // Liquid Silver & Metallic Chrome Palette
-      uColorDeep: { value: new THREE.Color("#0a0f18") },       // Deep Obsidian Silver
-      uColorBase: { value: new THREE.Color("#2d3748") },       // Gunmetal Silver Slate
-      uColorMid: { value: new THREE.Color("#94a3b8") },        // Polished Liquid Silver
-      uColorHighlight: { value: new THREE.Color("#e2e8f0") },  // Bright Radiant Silver
-      uColorCyan: { value: new THREE.Color("#ffffff") },       // Pure Chrome White Highlight
-      uLightPos1: { value: new THREE.Vector3(4, 5, 4) },
-      uLightPos2: { value: new THREE.Vector3(-4, -3, 3) },
-      uLightPos3: { value: new THREE.Vector3(0, -5, -4) },
+      uLightPos1: { value: new THREE.Vector3(4.5, 4.0, 3.5) },   // Top-Right Gold Light
+      uLightPos2: { value: new THREE.Vector3(-4.0, -3.5, 3.0) }, // Bottom-Left Cyan Light
+      uLightPos3: { value: new THREE.Vector3(0.0, -4.5, -3.0) }, // Pink/Magenta Backlight
     };
 
     const material = new THREE.ShaderMaterial({
@@ -256,7 +281,7 @@ export default function FluidHeroBlob() {
 
     window.addEventListener("resize", handleResize);
 
-    // 6. Animation Loop (Continuous twisting ribbon precession)
+    // 6. Animation Loop (Smooth Organic Zero-G Floating & Rotation)
     let animationFrameId: number;
     const clock = new THREE.Clock();
 
@@ -265,14 +290,14 @@ export default function FluidHeroBlob() {
       uniforms.uTime.value = elapsedTime;
 
       // Smooth mouse spring interpolation
-      mouse.x += (mouse.targetX - mouse.x) * 0.05;
-      mouse.y += (mouse.targetY - mouse.y) * 0.05;
+      mouse.x += (mouse.targetX - mouse.x) * 0.04;
+      mouse.y += (mouse.targetY - mouse.y) * 0.04;
       uniforms.uMouse.value.set(mouse.x, mouse.y);
 
-      // Continuous 3D multi-axis twisting rotation + mouse tilt
-      mesh.rotation.y = elapsedTime * 0.22 + mouse.x * 0.45;
-      mesh.rotation.x = Math.sin(elapsedTime * 0.15) * 0.35 + mouse.y * 0.35;
-      mesh.rotation.z = Math.cos(elapsedTime * 0.18) * 0.25;
+      // Continuous organic 3D floating and gentle rotation + mouse tilt
+      mesh.rotation.y = elapsedTime * 0.12 + mouse.x * 0.35;
+      mesh.rotation.x = Math.sin(elapsedTime * 0.1) * 0.18 + mouse.y * 0.3;
+      mesh.rotation.z = Math.cos(elapsedTime * 0.08) * 0.12;
 
       renderer.render(scene, camera);
       animationFrameId = requestAnimationFrame(animate);

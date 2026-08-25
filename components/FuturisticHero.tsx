@@ -8,18 +8,19 @@ import { ArrowRight, Sparkles, PhoneCall, Headphones, CheckCircle2, ChevronRight
 
 export default function FuturisticHero() {
   return (
-    <section className="relative min-h-[92vh] lg:min-h-screen bg-[#070414] text-white flex flex-col justify-between overflow-hidden pt-12 pb-16">
+    <section className="relative min-h-[92vh] lg:min-h-screen bg-[#030d1d] text-white flex flex-col justify-between overflow-hidden pt-12 pb-16">
       {/* 1. Background 3D Organic Fluid Mesh Canvas */}
       <FluidHeroBlob />
 
-      {/* Subtle Background Radial Glow Overlays */}
-      <div className="absolute inset-0 bg-radial-at-c from-transparent via-[#070414]/30 to-[#070414] pointer-events-none z-1" />
-      <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-purple-600/10 rounded-full blur-[140px] pointer-events-none" />
+      {/* Subtle Background Radial Glow Overlays (Brand Sapphire & Ocean Sky) */}
+      <div className="absolute inset-0 bg-radial-at-c from-transparent via-[#030d1d]/40 to-[#030d1d] pointer-events-none z-1" />
+      <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-sky-500/15 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute top-1/3 -right-32 w-80 h-80 bg-cyan-500/10 rounded-full blur-[120px] pointer-events-none" />
 
       {/* 2. Centered Main Hero Content */}
       <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center my-auto pt-10 sm:pt-16 pb-12">
         {/* Top Tag Badge */}
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 text-sky-300 border border-white/15 text-xs sm:text-sm font-medium backdrop-blur-md mb-8 animate-fade-in shadow-lg">
+        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-sky-500/15 text-sky-300 border border-sky-400/30 text-xs sm:text-sm font-medium backdrop-blur-md mb-8 animate-fade-in shadow-lg">
           <Sparkles className="w-4 h-4 text-sky-400 animate-spin" style={{ animationDuration: "10s" }} />
           <span>Introducing Saya IntelliCall • Telecalling Solutions</span>
         </div>

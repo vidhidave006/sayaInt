@@ -171,17 +171,17 @@ export default function FluidHeroBlob() {
         vec3 reflectDir1 = reflect(-lightDir1, normal);
         float spec1 = pow(max(dot(viewDir, reflectDir1), 0.0), 32.0);
 
-        // 3. Light 2: Electric Purple / Magenta from bottom-left
+        // 3. Light 2: Electric Azure / Teal from bottom-left
         vec3 lightDir2 = normalize(uLightPos2 - vWorldPosition);
         float diff2 = max(dot(normal, lightDir2), 0.0);
         vec3 reflectDir2 = reflect(-lightDir2, normal);
         float spec2 = pow(max(dot(viewDir, reflectDir2), 0.0), 24.0);
 
-        // 4. Light 3: Deep Royal Violet back-light
+        // 4. Light 3: Deep Royal Navy back-light
         vec3 lightDir3 = normalize(uLightPos3 - vWorldPosition);
         float diff3 = max(dot(normal, lightDir3), 0.0);
 
-        // 5. Palette Blending based on displacement & angles
+        // 5. Palette Blending based on displacement & angles (Saya Intellicall Brand Ocean/Sky/Cyan)
         vec3 color = uColorDeep;
         color = mix(color, uColorBase, smoothstep(-0.6, 0.2, vDisplacement));
         color = mix(color, uColorMid, smoothstep(0.0, 0.7, vDisplacement));
@@ -189,11 +189,11 @@ export default function FluidHeroBlob() {
 
         // Add specular gloss highlights (Iridescent Metallic Liquid Feel)
         color += uColorCyan * spec1 * 1.6;
-        color += uColorHighlight * spec2 * 1.3;
+        color += uColorHighlight * spec2 * 1.2;
 
-        // Rim Glows (Cyan on one side, Violet/Magenta on other)
-        color += uColorCyan * fresnel * 0.9;
-        color += uColorHighlight * innerFresnel * 0.45;
+        // Rim Glows (Cyan on one side, Sky/Aqua on other)
+        color += uColorCyan * fresnel * 0.95;
+        color += uColorHighlight * innerFresnel * 0.5;
 
         // Add soft ambient light
         color += uColorMid * 0.15;
@@ -211,12 +211,12 @@ export default function FluidHeroBlob() {
       uNoiseDensity: { value: 0.85 },
       uNoiseStrength: { value: 0.55 },
       uMouse: { value: new THREE.Vector2(0, 0) },
-      // Colors matching the reference image (Deep purple, glossy violet, electric magenta & cyan fresnel)
-      uColorDeep: { value: new THREE.Color("#0c071d") },       // Deep Obsidian Violet
-      uColorBase: { value: new THREE.Color("#250949") },       // Rich Royal Purple
-      uColorMid: { value: new THREE.Color("#581c87") },        // Vibrant Purple
-      uColorHighlight: { value: new THREE.Color("#9333ea") },  // Electric Violet
-      uColorCyan: { value: new THREE.Color("#38bdf8") },       // Luminous Sky / Cyan
+      // Website Brand Palette (Saya Intellicall Sapphire Navy, Ocean Blue, Sky Blue & Electric Cyan)
+      uColorDeep: { value: new THREE.Color("#031326") },       // Deep Sapphire Navy
+      uColorBase: { value: new THREE.Color("#073b6a") },       // Rich Ocean Navy
+      uColorMid: { value: new THREE.Color("#0284c7") },        // Brand Vibrant Sky Blue
+      uColorHighlight: { value: new THREE.Color("#38bdf8") },  // Luminous Azure
+      uColorCyan: { value: new THREE.Color("#06b6d4") },       // Electric Cyan / Teal
       uLightPos1: { value: new THREE.Vector3(4, 5, 4) },
       uLightPos2: { value: new THREE.Vector3(-4, -3, 3) },
       uLightPos3: { value: new THREE.Vector3(0, -5, -4) },

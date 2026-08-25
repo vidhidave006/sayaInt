@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import HeroSlider from "@/components/HeroSlider";
+import FuturisticHero from "@/components/FuturisticHero";
 import SpotlightCard from "@/components/SpotlightCard";
 import MagneticButton from "@/components/MagneticButton";
 import {
@@ -92,8 +92,8 @@ export default function Home() {
 
   return (
     <div className="bg-white overflow-hidden">
-      {/* 1. Hero Slider with 3D Orbital Ecosystem Animation */}
-      <HeroSlider />
+      {/* 1. Futuristic 3D Fluid Hero Section (Matching NeuroVision Reference) */}
+      <FuturisticHero />
 
       {/* 2. What We Offer Section with Floating Badges & Card Hover Animations */}
       <section className="py-20 lg:py-28 bg-white relative" id="services">

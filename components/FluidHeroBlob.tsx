@@ -18,7 +18,7 @@ export default function FluidHeroBlob() {
       0.1,
       100
     );
-    camera.position.z = 6.2;
+    camera.position.z = 6.4;
 
     const renderer = new THREE.WebGLRenderer({
       antialias: true,
@@ -28,10 +28,10 @@ export default function FluidHeroBlob() {
     renderer.setSize(container.clientWidth, container.clientHeight);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    renderer.toneMappingExposure = 1.25;
+    renderer.toneMappingExposure = 1.3;
     container.appendChild(renderer.domElement);
 
-    // 2. Custom Simplex Noise Shader Material for the 3D Organic Fluid Blob
+    // 2. Custom Simplex Noise Shader Material for the 3D Twisted Torus Knot Ribbon
     const vertexShader = `
       uniform float uTime;
       uniform float uSpeed;
@@ -44,7 +44,7 @@ export default function FluidHeroBlob() {
       varying float vDisplacement;
       varying vec3 vWorldPosition;
 
-      // Classic Perlin / Simplex 3D Noise Functions
+      // Classic 3D Simplex Noise
       vec4 permute(vec4 x){return mod(((x*34.0)+1.0)*x, 289.0);}
       vec4 taylorInvSqrt(vec4 r){return 1.79284291400159 - 0.85373472095314 * r;}
 
@@ -111,23 +111,20 @@ export default function FluidHeroBlob() {
       void main() {
         vNormal = normal;
         
-        // Multi-frequency organic noise displacement
+        // Fluid Wave displacement along Torus Knot surface
         float time = uTime * uSpeed;
         vec3 noisePos = position * uNoiseDensity + vec3(time * 0.4, time * 0.3, time * 0.5);
         
-        // Layer 1: Broad shape morphing
+        // Organic ripple waves
         float noise1 = snoise(noisePos);
-        // Layer 2: Medium folds & creases
-        float noise2 = snoise(noisePos * 2.1 + vec3(time * 0.2)) * 0.5;
-        // Layer 3: Fine ripple detail
-        float noise3 = snoise(noisePos * 4.2 - vec3(time * 0.3)) * 0.25;
+        float noise2 = snoise(noisePos * 2.2 + vec3(time * 0.2)) * 0.45;
         
-        float totalDisplacement = (noise1 + noise2 + noise3) * uNoiseStrength;
+        float totalDisplacement = (noise1 + noise2) * uNoiseStrength;
         vDisplacement = totalDisplacement;
 
-        // Subtle mouse dynamic push
-        vec3 mouseOffset = vec3(uMouse.x * 0.3, uMouse.y * 0.3, 0.0);
-        vec3 newPos = position + normal * totalDisplacement + mouseOffset * 0.15;
+        // Subtle mouse push
+        vec3 mouseOffset = vec3(uMouse.x * 0.25, uMouse.y * 0.25, 0.0);
+        vec3 newPos = position + normal * totalDisplacement + mouseOffset * 0.12;
         vPosition = newPos;
 
         vec4 worldPos = modelMatrix * vec4(newPos, 1.0);
@@ -154,69 +151,69 @@ export default function FluidHeroBlob() {
       varying vec3 vWorldPosition;
 
       void main() {
-        // Compute perturbed normal
+        // High-precision normal reconstruction
         vec3 dX = dFdx(vWorldPosition);
         vec3 dY = dFdy(vWorldPosition);
         vec3 normal = normalize(cross(dX, dY));
 
         vec3 viewDir = normalize(cameraPosition - vWorldPosition);
 
-        // 1. Fresnel Edge Reflection (Glossy Rim)
-        float fresnel = pow(1.0 - max(dot(viewDir, normal), 0.0), 2.8);
+        // 1. Fresnel Edge Reflection (Glossy Metallic Rim)
+        float fresnel = pow(1.0 - max(dot(viewDir, normal), 0.0), 2.6);
         float innerFresnel = pow(1.0 - max(dot(viewDir, normal), 0.0), 1.2);
 
-        // 2. Light 1: Primary Cyan/Sky Spotlight from top-right
+        // 2. Light 1: Primary Cyan Spotlight from top-right
         vec3 lightDir1 = normalize(uLightPos1 - vWorldPosition);
         float diff1 = max(dot(normal, lightDir1), 0.0);
         vec3 reflectDir1 = reflect(-lightDir1, normal);
-        float spec1 = pow(max(dot(viewDir, reflectDir1), 0.0), 32.0);
+        float spec1 = pow(max(dot(viewDir, reflectDir1), 0.0), 36.0);
 
         // 3. Light 2: Electric Azure / Teal from bottom-left
         vec3 lightDir2 = normalize(uLightPos2 - vWorldPosition);
         float diff2 = max(dot(normal, lightDir2), 0.0);
         vec3 reflectDir2 = reflect(-lightDir2, normal);
-        float spec2 = pow(max(dot(viewDir, reflectDir2), 0.0), 24.0);
+        float spec2 = pow(max(dot(viewDir, reflectDir2), 0.0), 26.0);
 
         // 4. Light 3: Deep Royal Navy back-light
         vec3 lightDir3 = normalize(uLightPos3 - vWorldPosition);
         float diff3 = max(dot(normal, lightDir3), 0.0);
 
-        // 5. Palette Blending based on displacement & angles (Saya Intellicall Brand Ocean/Sky/Cyan)
+        // 5. Palette Blending based on displacement & angles
         vec3 color = uColorDeep;
-        color = mix(color, uColorBase, smoothstep(-0.6, 0.2, vDisplacement));
+        color = mix(color, uColorBase, smoothstep(-0.5, 0.2, vDisplacement));
         color = mix(color, uColorMid, smoothstep(0.0, 0.7, vDisplacement));
-        color = mix(color, uColorHighlight, diff2 * 0.7);
+        color = mix(color, uColorHighlight, diff2 * 0.75);
 
-        // Add specular gloss highlights (Iridescent Metallic Liquid Feel)
-        color += uColorCyan * spec1 * 1.6;
-        color += uColorHighlight * spec2 * 1.2;
+        // Specular gloss highlights (Liquid Chrome / Iridescent Feel)
+        color += uColorCyan * spec1 * 1.7;
+        color += uColorHighlight * spec2 * 1.3;
 
-        // Rim Glows (Cyan on one side, Sky/Aqua on other)
-        color += uColorCyan * fresnel * 0.95;
-        color += uColorHighlight * innerFresnel * 0.5;
+        // Rim Glows (Cyan & Azure Rim Reflections)
+        color += uColorCyan * fresnel * 1.0;
+        color += uColorHighlight * innerFresnel * 0.55;
 
-        // Add soft ambient light
-        color += uColorMid * 0.15;
+        // Soft ambient illumination
+        color += uColorMid * 0.18;
 
         gl_FragColor = vec4(color, 0.96);
       }
     `;
 
-    // 3. Geometry (High subdivision sphere for ultra-smooth liquid folds)
-    const geometry = new THREE.IcosahedronGeometry(1.85, 48);
+    // 3. Geometry: Twisted Torus Knot Ribbon (Smooth continuous looping ribbon)
+    const geometry = new THREE.TorusKnotGeometry(1.35, 0.44, 256, 64, 2, 3);
 
     const uniforms = {
       uTime: { value: 0 },
-      uSpeed: { value: 0.35 },
-      uNoiseDensity: { value: 0.85 },
-      uNoiseStrength: { value: 0.55 },
+      uSpeed: { value: 0.38 },
+      uNoiseDensity: { value: 1.1 },
+      uNoiseStrength: { value: 0.35 },
       uMouse: { value: new THREE.Vector2(0, 0) },
-      // Website Brand Palette (Saya Intellicall Sapphire Navy, Ocean Blue, Sky Blue & Electric Cyan)
+      // Brand Palette (Sapphire Navy, Ocean Blue, Sky Blue & Electric Cyan)
       uColorDeep: { value: new THREE.Color("#031326") },       // Deep Sapphire Navy
       uColorBase: { value: new THREE.Color("#073b6a") },       // Rich Ocean Navy
       uColorMid: { value: new THREE.Color("#0284c7") },        // Brand Vibrant Sky Blue
       uColorHighlight: { value: new THREE.Color("#38bdf8") },  // Luminous Azure
-      uColorCyan: { value: new THREE.Color("#06b6d4") },       // Electric Cyan / Teal
+      uColorCyan: { value: new THREE.Color("#06b6d4") },       // Electric Cyan
       uLightPos1: { value: new THREE.Vector3(4, 5, 4) },
       uLightPos2: { value: new THREE.Vector3(-4, -3, 3) },
       uLightPos3: { value: new THREE.Vector3(0, -5, -4) },
@@ -259,7 +256,7 @@ export default function FluidHeroBlob() {
 
     window.addEventListener("resize", handleResize);
 
-    // 6. Animation Loop
+    // 6. Animation Loop (Continuous twisting ribbon precession)
     let animationFrameId: number;
     const clock = new THREE.Clock();
 
@@ -267,15 +264,15 @@ export default function FluidHeroBlob() {
       const elapsedTime = clock.getElapsedTime();
       uniforms.uTime.value = elapsedTime;
 
-      // Smooth mouse interpolation (spring damping)
+      // Smooth mouse spring interpolation
       mouse.x += (mouse.targetX - mouse.x) * 0.05;
       mouse.y += (mouse.targetY - mouse.y) * 0.05;
       uniforms.uMouse.value.set(mouse.x, mouse.y);
 
-      // Continuous gentle rotation + mouse tilt
-      mesh.rotation.y = elapsedTime * 0.15 + mouse.x * 0.4;
-      mesh.rotation.x = Math.sin(elapsedTime * 0.1) * 0.2 + mouse.y * 0.3;
-      mesh.rotation.z = Math.cos(elapsedTime * 0.12) * 0.15;
+      // Continuous 3D multi-axis twisting rotation + mouse tilt
+      mesh.rotation.y = elapsedTime * 0.22 + mouse.x * 0.45;
+      mesh.rotation.x = Math.sin(elapsedTime * 0.15) * 0.35 + mouse.y * 0.35;
+      mesh.rotation.z = Math.cos(elapsedTime * 0.18) * 0.25;
 
       renderer.render(scene, camera);
       animationFrameId = requestAnimationFrame(animate);

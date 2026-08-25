@@ -158,44 +158,44 @@ export default function FluidHeroBlob() {
 
         vec3 viewDir = normalize(cameraPosition - vWorldPosition);
 
-        // 1. Fresnel Edge Reflection (Glossy Metallic Rim)
-        float fresnel = pow(1.0 - max(dot(viewDir, normal), 0.0), 2.6);
-        float innerFresnel = pow(1.0 - max(dot(viewDir, normal), 0.0), 1.2);
+        // 1. Fresnel Edge Reflection (Glossy Metallic Chrome Rim)
+        float fresnel = pow(1.0 - max(dot(viewDir, normal), 0.0), 2.4);
+        float innerFresnel = pow(1.0 - max(dot(viewDir, normal), 0.0), 1.1);
 
-        // 2. Light 1: Primary Cyan Spotlight from top-right
+        // 2. Light 1: Primary Pure White Specular Light from top-right
         vec3 lightDir1 = normalize(uLightPos1 - vWorldPosition);
         float diff1 = max(dot(normal, lightDir1), 0.0);
         vec3 reflectDir1 = reflect(-lightDir1, normal);
-        float spec1 = pow(max(dot(viewDir, reflectDir1), 0.0), 36.0);
+        float spec1 = pow(max(dot(viewDir, reflectDir1), 0.0), 48.0);
 
-        // 3. Light 2: Electric Azure / Teal from bottom-left
+        // 3. Light 2: Ice Silver / Bright Specular Light from bottom-left
         vec3 lightDir2 = normalize(uLightPos2 - vWorldPosition);
         float diff2 = max(dot(normal, lightDir2), 0.0);
         vec3 reflectDir2 = reflect(-lightDir2, normal);
-        float spec2 = pow(max(dot(viewDir, reflectDir2), 0.0), 26.0);
+        float spec2 = pow(max(dot(viewDir, reflectDir2), 0.0), 32.0);
 
-        // 4. Light 3: Deep Royal Navy back-light
+        // 4. Light 3: Deep Metallic Backlight
         vec3 lightDir3 = normalize(uLightPos3 - vWorldPosition);
         float diff3 = max(dot(normal, lightDir3), 0.0);
 
-        // 5. Palette Blending based on displacement & angles
+        // 5. Palette Blending: Metallic Liquid Silver & Chrome
         vec3 color = uColorDeep;
-        color = mix(color, uColorBase, smoothstep(-0.5, 0.2, vDisplacement));
-        color = mix(color, uColorMid, smoothstep(0.0, 0.7, vDisplacement));
-        color = mix(color, uColorHighlight, diff2 * 0.75);
+        color = mix(color, uColorBase, smoothstep(-0.5, 0.1, vDisplacement));
+        color = mix(color, uColorMid, smoothstep(0.0, 0.65, vDisplacement));
+        color = mix(color, uColorHighlight, diff1 * 0.6 + diff2 * 0.4);
 
-        // Specular gloss highlights (Liquid Chrome / Iridescent Feel)
-        color += uColorCyan * spec1 * 1.7;
-        color += uColorHighlight * spec2 * 1.3;
+        // Mirror-grade Chrome Highlights & Specular reflections
+        color += uColorCyan * spec1 * 2.2;
+        color += uColorHighlight * spec2 * 1.5;
 
-        // Rim Glows (Cyan & Azure Rim Reflections)
-        color += uColorCyan * fresnel * 1.0;
-        color += uColorHighlight * innerFresnel * 0.55;
+        // Rim Silver / Ice Glow
+        color += uColorCyan * fresnel * 0.9;
+        color += uColorHighlight * innerFresnel * 0.4;
 
-        // Soft ambient illumination
-        color += uColorMid * 0.18;
+        // Soft metallic ambient light
+        color += uColorMid * 0.15;
 
-        gl_FragColor = vec4(color, 0.96);
+        gl_FragColor = vec4(color, 0.98);
       }
     `;
 
@@ -208,12 +208,12 @@ export default function FluidHeroBlob() {
       uNoiseDensity: { value: 1.1 },
       uNoiseStrength: { value: 0.35 },
       uMouse: { value: new THREE.Vector2(0, 0) },
-      // Brand Palette (Sapphire Navy, Ocean Blue, Sky Blue & Electric Cyan)
-      uColorDeep: { value: new THREE.Color("#031326") },       // Deep Sapphire Navy
-      uColorBase: { value: new THREE.Color("#073b6a") },       // Rich Ocean Navy
-      uColorMid: { value: new THREE.Color("#0284c7") },        // Brand Vibrant Sky Blue
-      uColorHighlight: { value: new THREE.Color("#38bdf8") },  // Luminous Azure
-      uColorCyan: { value: new THREE.Color("#06b6d4") },       // Electric Cyan
+      // Liquid Silver & Metallic Chrome Palette
+      uColorDeep: { value: new THREE.Color("#0a0f18") },       // Deep Obsidian Silver
+      uColorBase: { value: new THREE.Color("#2d3748") },       // Gunmetal Silver Slate
+      uColorMid: { value: new THREE.Color("#94a3b8") },        // Polished Liquid Silver
+      uColorHighlight: { value: new THREE.Color("#e2e8f0") },  // Bright Radiant Silver
+      uColorCyan: { value: new THREE.Color("#ffffff") },       // Pure Chrome White Highlight
       uLightPos1: { value: new THREE.Vector3(4, 5, 4) },
       uLightPos2: { value: new THREE.Vector3(-4, -3, 3) },
       uLightPos3: { value: new THREE.Vector3(0, -5, -4) },

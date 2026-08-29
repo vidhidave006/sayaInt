@@ -1,13 +1,20 @@
-name: Deploy to Hostinger
+name: Deploy to Windows VPS
 
 on:
   push:
     branches: [main]
   workflow_dispatch:
 
+# Runs on a self-hosted GitHub Actions runner installed on the Windows VPS.
+# Builds the static export and mirrors ./out into the IIS site folder.
 jobs:
-  build-deploy:
-    runs-on: ubuntu-latest
+  deploy:
+    runs-on: [self-hosted, windows]
+    concurrency:
+      group: deploy-vps
+      cancel-in-progress: true
+    env:
+      IIS_SITE_PATH: C:\inetpub\sites\mokshtechno
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -24,11 +31,10 @@ jobs:
       - name: Build static export
         run: npm run build
 
-      - name: Deploy via FTP
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-        with:
-          server: ${{ secrets.FTP_HOST }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./out/
-          server-dir: ${{ secrets.FTP_SERVER_DIR }}
+      - name: Mirror out/ into IIS site folder
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Force -Path $env:IIS_SITE_PATH | Out-Null
+          robocopy .\out $env:IIS_SITE_PATH /MIR /R:2 /W:2 /NFL /NDL /NJH /NJS /NP
+          # robocopy exit codes < 8 mean success
+          if ($LASTEXITCODE -ge 8) { exit $LASTEXITCODE } else { exit 0 }

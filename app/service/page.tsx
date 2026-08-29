@@ -1,5 +1,6 @@
 import Link from "next/link";
 import PageHeader from "@/components/PageHeader";
+import AnimatedCounter from "@/components/AnimatedCounter";
 import {
   PhoneIncoming,
   PhoneOutgoing,
@@ -87,10 +88,10 @@ export default function ServicesPage() {
   ];
 
   const counters = [
-    { icon: AlarmClock, count: "150", label: "Happy Clients", color: "text-sky-400" },
-    { icon: BarChart3, count: "130", label: "Projects completed", color: "text-emerald-400" },
-    { icon: FileEdit, count: "99", label: "Positive feedback", color: "text-amber-400" },
-    { icon: Zap, count: "250", label: "Cups of Coffee", color: "text-purple-400" },
+    { icon: AlarmClock, count: 150, label: "Happy Clients", color: "text-sky-600", bg: "bg-sky-50 border-sky-100" },
+    { icon: BarChart3, count: 130, label: "Projects completed", color: "text-emerald-600", bg: "bg-emerald-50 border-emerald-100" },
+    { icon: FileEdit, count: 99, label: "Positive feedback", color: "text-amber-600", bg: "bg-amber-50 border-amber-100" },
+    { icon: Zap, count: 250, label: "Cups of Coffee", color: "text-purple-600", bg: "bg-purple-50 border-purple-100" },
   ];
 
   return (
@@ -217,19 +218,19 @@ export default function ServicesPage() {
       </section>
 
       {/* 4. Counter / Award-Winning Agency Section */}
-      <section className="py-20 bg-slate-900 text-white relative overflow-hidden">
-        <div className="absolute inset-0 pointer-events-none opacity-10">
-          <div className="absolute -top-20 -left-20 w-96 h-96 bg-sky-500 rounded-full blur-3xl" />
-          <div className="absolute -bottom-20 -right-20 w-96 h-96 bg-blue-600 rounded-full blur-3xl" />
+      <section className="py-20 bg-gradient-to-b from-white via-slate-50 to-white text-slate-800 relative overflow-hidden border-t border-slate-200/70">
+        <div className="absolute inset-0 pointer-events-none opacity-40">
+          <div className="absolute -top-20 -left-20 w-96 h-96 bg-sky-200/50 rounded-full blur-3xl" />
+          <div className="absolute -bottom-20 -right-20 w-96 h-96 bg-blue-200/50 rounded-full blur-3xl" />
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center max-w-2xl mx-auto mb-16 space-y-3">
-            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-white">
+            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-slate-900">
               Award-Winning Agency
             </h2>
-            <div className="text-slate-300 text-sm sm:text-base space-y-1">
-              <p className="font-bold text-sky-400">Industry Expertise</p>
+            <div className="text-slate-600 text-sm sm:text-base space-y-1">
+              <p className="font-bold text-sky-600">Industry Expertise</p>
               {industryExpertise.map((ind, idx) => (
                 <p key={idx}>• {ind}</p>
               ))}
@@ -243,15 +244,15 @@ export default function ServicesPage() {
               return (
                 <div
                   key={idx}
-                  className="p-6 rounded-2xl bg-slate-800/60 border border-slate-700/80 hover:border-sky-500/50 card-interactive shadow-lg flex flex-col items-center group"
+                  className="p-6 rounded-2xl bg-white border border-slate-200/90 hover:border-sky-300 card-interactive shadow-sm hover:shadow-xl flex flex-col items-center group transition-all duration-300"
                 >
-                  <div className="w-12 h-12 rounded-xl bg-slate-900 border border-slate-700 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
-                    <Icon className={`w-6 h-6 ${item.color}`} />
+                  <div className={`w-14 h-14 rounded-2xl ${item.bg || "bg-sky-50 border-sky-100"} border flex items-center justify-center mb-3.5 group-hover:scale-110 transition-transform duration-300`}>
+                    <Icon className={`w-7 h-7 ${item.color}`} />
                   </div>
-                  <div className="text-4xl sm:text-5xl font-black text-white group-hover:text-sky-400 transition-colors">
-                    {item.count}
+                  <div className="text-4xl sm:text-5xl font-black text-slate-900 group-hover:text-sky-600 transition-colors">
+                    <AnimatedCounter end={item.count} duration={2000} />
                   </div>
-                  <h3 className="text-xs font-bold text-slate-400 uppercase tracking-wider mt-2">
+                  <h3 className="text-xs font-bold text-slate-500 uppercase tracking-wider mt-2">
                     {item.label}
                   </h3>
                 </div>

@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import PageHeader from "@/components/PageHeader";
+import AnimatedCounter from "@/components/AnimatedCounter";
 import {
   Users,
   Award,
@@ -73,10 +74,10 @@ export default function AboutPage() {
   ];
 
   const counters = [
-    { icon: AlarmClock, count: "130", label: "Happy Clients", color: "text-sky-400" },
-    { icon: BarChart3, count: "130", label: "Projects completed", color: "text-emerald-400" },
-    { icon: FileEdit, count: "90", label: "Positive feedback", color: "text-amber-400" },
-    { icon: Zap, count: "250", label: "Cups of Coffee", color: "text-purple-400" },
+    { icon: AlarmClock, count: 130, label: "Happy Clients", color: "text-sky-400" },
+    { icon: BarChart3, count: 130, label: "Projects completed", color: "text-emerald-400" },
+    { icon: FileEdit, count: 90, label: "Positive feedback", color: "text-amber-400" },
+    { icon: Zap, count: 250, label: "Cups of Coffee", color: "text-purple-400" },
   ];
 
   return (
@@ -287,7 +288,7 @@ export default function AboutPage() {
                     <Icon className="w-6 h-6 text-sky-600" />
                   </div>
                   <div className="text-4xl sm:text-5xl font-black text-slate-900 group-hover:text-sky-600 transition-colors">
-                    {item.count}
+                    <AnimatedCounter end={item.count} duration={2000} />
                   </div>
                   <h3 className="text-xs font-bold text-slate-500 uppercase tracking-wider mt-2">
                     {item.label}
